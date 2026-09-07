@@ -1,0 +1,434 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Estudio Jurídico Gerke — token layer
+   Source of truth: DESIGN.md. Do not add colors, fonts or motion here without
+   updating DESIGN.md first.
+   ========================================================================== */
+
+@theme {
+  /* --- Color (pre-validated for contrast — do not substitute) ------------ */
+  --color-brand-700: #39817b; /* primary; buttons, headings, rules  4.57:1 */
+  --color-brand-600: #3f8e87; /* display text >=24px, borders, fills ONLY   */
+  --color-brand-900: #14413e; /* dark bands, footer      11.3:1 w/ white    */
+  --color-brand-ink: #2a6560; /* links + small teal text on white  6.71:1   */
+  --color-neutral-500: #919191; /* hairlines and dividers ONLY              */
+  --color-ink: #1a1a1a; /* body copy                                       */
+  --color-paper: #ffffff;
+  --color-paper-alt: #fafaf8; /* alternating section bands                  */
+  --color-error: #b3261e; /* form validation errors ONLY   6.53:1 on white  */
+
+  /* --- Type scale ------------------------------------------------------- */
+  --text-h1: clamp(2rem, 5vw, 3.75rem);
+  --text-h2: clamp(1.5rem, 3.2vw, 2.5rem);
+  --text-h3: clamp(1.125rem, 2vw, 1.5rem);
+  --text-eyebrow: 0.75rem;
+  --text-body: 1.0625rem;
+  --text-body-lg: 1.125rem;
+  --text-lead: clamp(1.125rem, 2vw, 1.375rem);
+
+  --tracking-display: 0.06em;
+  --tracking-eyebrow: 0.18em;
+
+  --leading-display: 1.05;
+  --leading-body: 1.7;
+  --leading-lead: 1.55;
+
+  /* --- Spacing & layout ------------------------------------------------- */
+  --spacing-section: clamp(4rem, 9vw, 8rem);
+  --container-site: 1200px;
+  --measure-prose: 68ch;
+
+  /* --- Motif ------------------------------------------------------------ */
+  --radius-bracket: 14px;
+  --border-width-bracket: 2px;
+
+  /* --- Motion ------------------------------------------------------------
+     Sanctioned instances beyond revealOnScroll — see DESIGN.md §5:
+     hover-state rules/underlines (color/border/transform, <=200ms, tied to
+     the bracket motif); the mobile nav panel's open/close; and the practice
+     -area index row's description reveal. */
+  --duration-reveal: 360ms;
+  --ease-reveal: cubic-bezier(0, 0, 0.2, 1);
+  --duration-panel: 280ms;
+  --duration-row-reveal: 200ms;
+}
+
+@theme inline {
+  --font-sans: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Rule 7: no horizontal overflow at any breakpoint. */
+    overflow-x: hidden;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: var(--text-body-lg);
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-brand-900);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-700);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ==========================================================================
+   Typography utilities
+   Every title, eyebrow, lead and numeral on the site goes through these.
+   ========================================================================== */
+
+@utility u-display {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  text-wrap: balance;
+  color: var(--color-brand-900);
+  /* A single long unbreakable token (a long surname, a compound area name
+     without a helpful space) would otherwise overflow the viewport at
+     narrow widths instead of wrapping — CLAUDE.md rule 7 is zero
+     horizontal overflow at any width, content included. */
+  overflow-wrap: break-word;
+}
+
+@utility u-h1 {
+  font-size: var(--text-h1);
+}
+
+@utility u-h2 {
+  font-size: var(--text-h2);
+}
+
+@utility u-h3 {
+  font-size: var(--text-h3);
+}
+
+@utility u-eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  line-height: 1.2;
+  color: var(--color-brand-ink);
+}
+
+@utility u-body {
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  color: var(--color-ink);
+  max-width: var(--measure-prose);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@utility u-lead {
+  font-size: var(--text-lead);
+  font-weight: 300;
+  line-height: var(--leading-lead);
+  color: var(--color-ink);
+  max-width: var(--measure-prose);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@utility u-num {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  /* brand-ink, not brand-600: aria-hidden (used on every sub-24px instance)
+     only removes redundant screen-reader announcement — it does nothing for
+     a sighted, low-vision reader who still sees this text and needs it to
+     meet 1.4.3 at any size. brand-ink is the token already documented as
+     safe for small text on white (6.71:1); using it here means u-num no
+     longer depends on size to stay AA-compliant. */
+  color: var(--color-brand-ink);
+}
+
+@media (min-width: 768px) {
+  .u-body {
+    font-size: var(--text-body-lg);
+  }
+}
+
+/* ==========================================================================
+   Layout utilities
+   ========================================================================== */
+
+@utility u-container {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .u-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* 12 columns from 1024px, 6 from 768px, single column below. */
+@utility u-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .u-grid-12 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .u-grid-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Dark band
+   On brand-900, body copy is white (11.3:1). Secondary copy is white at 80%.
+   Never a mid grey.
+   ========================================================================== */
+
+@utility u-on-dark {
+  color: var(--color-paper);
+
+  & .u-display,
+  & h1,
+  & h2,
+  & h3 {
+    color: var(--color-paper);
+  }
+
+  & .u-eyebrow {
+    color: color-mix(in srgb, var(--color-paper) 80%, transparent);
+  }
+
+  & .u-body,
+  & .u-lead {
+    color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+  }
+
+  & .u-num {
+    color: color-mix(in srgb, var(--color-paper) 70%, transparent);
+  }
+
+  /* <Prose> (non-lead mode) on a dark band: same treatment as .u-body,
+     plus its own nested links/emphasis/list markers, which otherwise stay
+     hardcoded to ink-on-white and read as near-invisible on brand-900. */
+  & .u-prose {
+    color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+
+    & strong {
+      color: var(--color-paper);
+    }
+
+    & a {
+      color: var(--color-paper);
+      text-decoration-color: color-mix(in srgb, var(--color-paper) 50%, transparent);
+    }
+
+    & a:hover {
+      color: color-mix(in srgb, var(--color-paper) 80%, transparent);
+    }
+
+    & ul > li::before {
+      border-top-color: color-mix(in srgb, var(--color-paper) 70%, transparent);
+    }
+
+    & ol > li::marker {
+      color: color-mix(in srgb, var(--color-paper) 70%, transparent);
+    }
+  }
+
+  & :focus-visible {
+    outline-color: var(--color-paper);
+  }
+}
+
+/* ==========================================================================
+   Prose — running copy
+   ========================================================================== */
+
+@utility u-prose {
+  max-width: var(--measure-prose);
+  color: var(--color-ink);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  overflow-wrap: break-word;
+  hyphens: auto;
+
+  & p + p {
+    margin-top: 1.25em;
+  }
+
+  & strong {
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  & a {
+    color: var(--color-brand-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition: color 160ms ease-out;
+  }
+
+  & a:hover {
+    color: var(--color-brand-900);
+  }
+
+  & ul,
+  & ol {
+    margin-top: 1.25em;
+    padding-left: 1.25em;
+  }
+
+  & ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  & ul > li {
+    position: relative;
+    padding-left: 1.25em;
+  }
+
+  /* The bracket motif, reduced to its smallest form: an opening rule. */
+  & ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 0.625em;
+    height: 0;
+    border-top: var(--border-width-bracket) solid var(--color-brand-600);
+  }
+
+  & ol {
+    list-style: decimal;
+  }
+
+  & ol > li::marker {
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-brand-600);
+  }
+
+  & li + li {
+    margin-top: 0.5em;
+  }
+}
+
+@media (min-width: 768px) {
+  .u-prose {
+    font-size: var(--text-body-lg);
+  }
+}
+
+/* ==========================================================================
+   Motion — revealOnScroll + the two sanctioned exceptions (DESIGN.md §5)
+   ========================================================================== */
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--duration-reveal) var(--ease-reveal),
+      transform var(--duration-reveal) var(--ease-reveal);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+  }
+
+  /*
+   * Mobile nav panel open/close: opacity + translateY, 280ms. Written as a
+   * plain rule (not composed from Tailwind's arbitrary-value + motion-reduce
+   * utilities) because two separately-generated utility classes for the same
+   * `transition` property don't reliably order themselves so the
+   * reduced-motion one wins — this single declaration always does.
+   */
+  .u-panel-transition {
+    transition:
+      opacity var(--duration-panel) var(--ease-reveal),
+      transform var(--duration-panel) var(--ease-reveal);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .u-panel-transition {
+      transition: none;
+    }
+  }
+
+  /*
+   * Practice-area index row: the description beneath the name is always in
+   * the DOM (mobile shows it statically) and expands via `grid-template-rows`
+   * on hover/focus at >=1024px — a progressive-disclosure reveal of real
+   * content, not decoration. The 0fr/1fr toggle itself is plain Tailwind
+   * (grid-rows-[0fr] / group-hover:grid-rows-[1fr]); only the transition
+   * declaration lives here, for the same reason as .u-panel-transition above.
+   */
+  .u-row-reveal {
+    transition: grid-template-rows var(--duration-row-reveal) var(--ease-reveal);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .u-row-reveal {
+      transition: none;
+    }
+  }
+}
