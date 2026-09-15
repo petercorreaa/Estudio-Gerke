@@ -84,11 +84,11 @@ export default async function HomePage({
           bottom padding that keeps the copy clear of the teal band. */}
       <section className="u-hero bg-paper text-ink">
         <div aria-hidden="true" className="u-hero-glow" />
-        {/* pb-52 is the 13rem of --hero-glow-height, kept as a literal so the
-            copy can never drift down into the tinted band. A bespoke
+        {/* pb-64 is the 16rem of --hero-glow-height, kept as a literal so the
+            copy can never drift down into the semicircle. A bespoke
             side-padding scale, not u-container's, so the headline gets the
             extra width it needs to hold to one line down to 360px. */}
-        <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-[var(--container-site)] flex-col items-center justify-center px-4 pt-16 pb-52 text-center sm:px-6 lg:min-h-[calc(100svh-5.5rem)] lg:px-10">
+        <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-[var(--container-site)] flex-col items-center justify-center px-4 pt-16 pb-64 text-center sm:px-6 lg:min-h-[calc(100svh-5.5rem)] lg:px-10">
           <BracketFrame variant="marker" openSide="right" />
           <Eyebrow className="mt-6">{home.hero.eyebrow}</Eyebrow>
           {/*

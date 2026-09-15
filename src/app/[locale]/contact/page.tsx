@@ -39,9 +39,16 @@ export default async function ContactPage({
     ? (requestedArea as string)
     : "";
 
-  const { lat, lng } = site.mapCoordinates;
-  const mapQuery = encodeURIComponent(site.address);
   /*
+   * The address text is the single source of truth for where the pin lands,
+   * for both embed variants and the "Ver en Google Maps" link, so the map
+   * always shows Av. Julio C. Patiño Nº 1377, Calacoto, La Paz, Bolivia,
+   * geocoded fresh by Google rather than an approximate lat/lng. (An earlier
+   * version centred the keyless fallback on `site.mapCoordinates`, a rough
+   * Calacoto-neighborhood point, not the building itself, that's the bug this
+   * replaces.) `site.mapCoordinates` stays in the schema as a documented
+   * approximate fallback only, unused here on purpose.
+   *
    * Google Maps, two ways. With GOOGLE_MAPS_API_KEY set (Vercel project env,
    * read at build time because these pages prerender) the embed goes through
    * the Maps Embed API, which is the supported product and lets the key be
@@ -49,11 +56,12 @@ export default async function ContactPage({
    * keyless embed endpoint, so the map still renders rather than showing an
    * error tile. Either way the tiles are Google's, not OpenStreetMap's.
    */
+  const mapQuery = encodeURIComponent(site.address);
   const mapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
   const mapEmbedUrl = mapsApiKey
     ? `https://www.google.com/maps/embed/v1/place?key=${mapsApiKey}&q=${mapQuery}` +
-      `&center=${lat},${lng}&zoom=${MAP_ZOOM}&language=${locale}`
-    : `https://maps.google.com/maps?q=${lat},${lng}&z=${MAP_ZOOM}&hl=${locale}&output=embed`;
+      `&zoom=${MAP_ZOOM}&language=${locale}`
+    : `https://maps.google.com/maps?q=${mapQuery}&z=${MAP_ZOOM}&hl=${locale}&output=embed`;
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
   const jsonLd = {

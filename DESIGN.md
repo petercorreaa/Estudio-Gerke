@@ -265,19 +265,25 @@ centred in what the visitor actually sees rather than in an arbitrary box. The
 stack is a bracket marker, the eyebrow, the h1, the lead and both calls to
 action, all centred, in that order.
 
-Beneath the copy sits `u-hero-glow`: a teal gradient rising from the bottom
-edge, built only from `brand-600` mixed with transparency, never a new color.
-Two rules govern it:
+Beneath the copy sits `u-hero-glow`: a half-ellipse of `brand-600` mixed with
+transparency, never a new color, spanning the hero's full width along its
+bottom edge like a wide, flattened dome rising out of it. The shape comes from
+an `ellipse farthest-side` radial gradient centred at 50% 100% of a full-width
+box: `farthest-side` sizes the ellipse's horizontal radius to half the box
+width (the distance to the left/right edges) and its vertical radius to the
+full box height (the distance to the top edge). Centred vertically on the
+bottom edge, the ellipse's leftmost and rightmost points land exactly on the
+box's bottom corners and its top point on the box's top-centre, a true
+half-ellipse inscribed in the full-width box. Two rules govern it:
 
 - **It stays clear of every piece of copy.** `brand-700` on white is 4.56:1,
   AA with no headroom at all, so the ghost button's label cannot sit on even a
-  slight tint. The band has a fixed height (`--hero-glow-height`, 13rem) and
-  the hero's container reserves the same amount as bottom padding, which keeps
-  the copy above it at any viewport size. If the band's height changes, the
-  padding changes with it.
-- **It eases off at the very bottom** so the hero meets the next section
-  without a seam. The long ramp up and the short ease down are what make it
-  read as a glow rising from the bottom rather than as a stripe.
+  slight tint. The box height is capped at `--hero-glow-height` (16rem) and the
+  hero's container reserves the same amount as bottom padding, which keeps the
+  copy above it at any viewport size. If the height changes, the padding
+  changes with it.
+- **It fades to fully transparent at its edge** so there is no visible seam
+  against the section beneath it.
 
 The hero is a plain `<section>`, not `<Section>`: it sets its own vertical
 rhythm, and `Section`'s `py-section` would fight that reserved bottom padding.

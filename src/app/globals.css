@@ -286,35 +286,43 @@
 
 /* ==========================================================================
    Hero
-   The home hero centres its copy in the viewport and carries a teal gradient
-   rising from the bottom edge. See DESIGN.md §7.
+   The home hero centres its copy in the viewport and carries a teal glow,
+   shaped as a half-ellipse spanning the full width, rising from the bottom
+   edge. See DESIGN.md §7.
    ========================================================================== */
 
 /*
- * Height of the teal band. The hero's own container reserves the same amount
- * as bottom padding (`pb-[var(--hero-glow-height)]`) so the copy never crosses
- * into it.
+ * Height of the glow's reserved zone. The hero's own container reserves the
+ * same amount as bottom padding (`pb-[var(--hero-glow-height)]`) so the copy
+ * never crosses into it.
  */
 @utility u-hero {
-  --hero-glow-height: 13rem;
+  --hero-glow-height: 16rem;
   position: relative;
   isolation: isolate;
 }
 
 /*
- * A tint of brand-600 over paper, never a new colour.
+ * A tint of brand-600 over paper, never a new colour, shaped as a half-ellipse
+ * whose flat edge spans the hero's full width along its own bottom edge, so it
+ * reads as a wide, flattened dome rising out of the bottom of the viewport.
  *
- * Two constraints shape it. First, brand-700 on white is 4.56:1, which is AA
- * with no headroom at all, so the ghost button's label cannot sit on even a
- * slight tint: the band is a fixed height and the hero reserves the same
- * height as bottom padding, which keeps every piece of copy above it at any
- * viewport size. Second, the band eases back to almost nothing in its last
- * fifth so the hero meets the section beneath it without a visible seam; the
- * long ramp up and the short ease down are what make it read as teal rising
- * from the bottom edge rather than as a stripe.
+ * The shape comes from an `ellipse farthest-side` radial gradient centred at
+ * the box's bottom-middle (50% 100%): `farthest-side` sizes the ellipse's
+ * horizontal radius to the distance to the left/right edges (half the box
+ * width each) and its vertical radius to the distance to the top edge (the
+ * full box height). Because the ellipse is centred vertically ON the bottom
+ * edge, its leftmost and rightmost points land exactly on the box's bottom
+ * corners and its top point exactly on the box's top-centre, a true
+ * half-ellipse inscribed in the full-width box. Two constraints still shape
+ * the color itself: brand-700 on white is 4.56:1, AA with no headroom at all,
+ * so the ghost button's label cannot sit on even a slight tint, which is why
+ * the dome's height is capped at `--hero-glow-height`; and the gradient fades
+ * to fully transparent by its edge so there is no visible seam against the
+ * section beneath it.
  */
 /* No negative z-index: the hero is its own stacking context and carries a
-   paper background, so a z-index of -1 would paint the band behind it. The
+   paper background, so a z-index of -1 would paint the glow behind it. The
    hero's content is positioned after this element and paints over it. */
 @utility u-hero-glow {
   position: absolute;
@@ -322,12 +330,12 @@
   bottom: 0;
   height: var(--hero-glow-height);
   pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    color-mix(in srgb, var(--color-brand-600) 16%, transparent) 44%,
-    color-mix(in srgb, var(--color-brand-600) 52%, transparent) 84%,
-    color-mix(in srgb, var(--color-brand-600) 6%, transparent) 100%
+  background: radial-gradient(
+    ellipse farthest-side at 50% 100%,
+    color-mix(in srgb, var(--color-brand-600) 62%, transparent) 0%,
+    color-mix(in srgb, var(--color-brand-600) 40%, transparent) 45%,
+    color-mix(in srgb, var(--color-brand-600) 12%, transparent) 80%,
+    transparent 100%
   );
 }
 

@@ -16,7 +16,7 @@ export interface Site {
   readonly country: string;
   readonly phones: readonly string[];
   readonly email: string;
-  /** Center point for the /contact map embed. */
+  /** Unused fallback; the /contact map embed geocodes `address` directly. */
   readonly mapCoordinates: { readonly lat: number; readonly lng: number };
 }
 
@@ -32,10 +32,9 @@ export const site = {
   // TODO: client to confirm. Leave empty until then, do not invent an address.
   // Components must treat "" as "no email yet" and render nothing.
   email: "",
-  // TODO: approximate, centers the /contact map embed on the Calacoto
-  // neighborhood in La Paz. Refine to the exact building once the firm
-  // confirms precise coordinates for Av. Julio C. Patiño Nº 1377. The
-  // "Ver en Google Maps" link next to the embed geocodes the real address
-  // text directly, so it is accurate regardless of this value.
+  // Approximate: an unused, documented fallback only. The /contact map embed
+  // and its "Ver en Google Maps" link both geocode `address` directly, so
+  // they land on the real building regardless of this value; nothing in the
+  // app currently reads it for display.
   mapCoordinates: { lat: -16.5378, lng: -68.0894 },
 } as const satisfies Site;
