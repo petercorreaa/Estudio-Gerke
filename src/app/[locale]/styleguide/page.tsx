@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* Reference data — mirrors DESIGN.md. Kept local: this route is temporary.    */
+/* Reference data, mirrors DESIGN.md. Kept local: this route is temporary.    */
 /* -------------------------------------------------------------------------- */
 
 const colors = [
@@ -60,7 +60,7 @@ const colors = [
     utility: "neutral-500",
     hex: "#919191",
     swatch: "bg-neutral-500",
-    ratio: "2.85:1 — fails AA for text",
+    ratio: "2.85:1, fails AA for text",
     use: "Hairlines and dividers ONLY.",
   },
   {
@@ -76,7 +76,7 @@ const colors = [
     utility: "paper",
     hex: "#FFFFFF",
     swatch: "bg-paper border border-neutral-500",
-    ratio: "—",
+    ratio: ", ",
     use: "Default background.",
   },
   {
@@ -84,7 +84,7 @@ const colors = [
     utility: "paper-alt",
     hex: "#FAFAF8",
     swatch: "bg-paper-alt border border-neutral-500",
-    ratio: "—",
+    ratio: ", ",
     use: "Alternating section bands.",
   },
 ];
@@ -137,7 +137,7 @@ const typeScale = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/* Local helpers — styleguide chrome only, not part of the design system.      */
+/* Local helpers, styleguide chrome only, not part of the design system.      */
 /* -------------------------------------------------------------------------- */
 
 function Spec({ children }: { children: ReactNode }) {
@@ -184,7 +184,7 @@ export default async function StyleguidePage({
         </SectionTitle>
         <Prose lead className="mt-6">
           Every token, type step and component in the system, rendered from the
-          same source as the site. Temporary route — delete before launch.
+          same source as the site. Temporary route, delete before launch.
         </Prose>
         <p className="mt-8 font-mono text-xs text-paper/70">
           locale: {locale} · verify at 360 / 390 / 768 / 1024 / 1440 px
@@ -199,7 +199,7 @@ export default async function StyleguidePage({
         <Prose className="mt-5">
           <p>
             Pre-validated for contrast. Do not substitute.{" "}
-            <strong>Body copy is #1A1A1A</strong> — never #3F8E87, never
+            <strong>Body copy is #1A1A1A</strong>, never #3F8E87, never
             #919191.
           </p>
         </Prose>
@@ -218,7 +218,7 @@ export default async function StyleguidePage({
                 <p className="mt-1 text-sm text-ink/70">{c.use}</p>
               </div>
               {/* Hex + ratio are data a reader must parse, so they render in
-                  ink — not in .u-num. See the note under DESIGN.md §2. */}
+                  ink, not in .u-num. See the note under DESIGN.md §2. */}
               <div className="shrink-0 sm:w-56 sm:text-right">
                 <p className="text-sm font-medium tabular-nums text-ink">
                   {c.hex}
@@ -241,10 +241,10 @@ export default async function StyleguidePage({
             >
               <p className="u-num text-2xl">Numeral .u-num en brand-ink</p>
               <p className="mt-3 text-ink">
-                Cuerpo de texto en #1A1A1A — correcto.
+                Cuerpo de texto en #1A1A1A, correcto.
               </p>
               <p className="mt-3 text-sm text-brand-ink">
-                Enlace o texto teal pequeño en brand-ink — correcto.
+                Enlace o texto teal pequeño en brand-ink, correcto.
               </p>
               <Spec>✓ 6.71:1, safe at any size · ✓ 17.4:1 · ✓ 6.71:1</Spec>
             </BracketFrame>
@@ -254,13 +254,13 @@ export default async function StyleguidePage({
               className="p-5 md:col-span-3 lg:col-span-6"
             >
               <p className="text-sm text-neutral-500 line-through">
-                Texto pequeño en neutral-500 — prohibido
+                Texto pequeño en neutral-500, prohibido
               </p>
               <p className="mt-3 text-sm text-brand-600 line-through">
-                Texto pequeño en brand-600 — prohibido
+                Texto pequeño en brand-600, prohibido
               </p>
               <Spec>
-                ✗ 2.85:1 · ✗ 3.87:1 — both fail WCAG AA. Shown struck through
+                ✗ 2.85:1 · ✗ 3.87:1, both fail WCAG AA. Shown struck through
                 for reference only; never ship either.
               </Spec>
             </BracketFrame>
@@ -275,7 +275,7 @@ export default async function StyleguidePage({
         </SectionTitle>
         <Prose className="mt-5">
           <p>
-            Ubuntu únicamente — 300 / 400 / 500 / 700, subsets{" "}
+            Ubuntu únicamente, 300 / 400 / 500 / 700, subsets{" "}
             <strong>latin + latin-ext</strong>. Prueba de acentos: á é í ó ú ñ ü
             Á É Í Ó Ú Ñ ¿ ¡ « ».
           </p>
@@ -290,10 +290,10 @@ export default async function StyleguidePage({
           ))}
           <Row label="weights">
             <div className="flex flex-col gap-2">
-              <p className="text-xl font-light">300 Light — lead paragraphs</p>
-              <p className="text-xl font-normal">400 Regular — body copy</p>
-              <p className="text-xl font-medium">500 Medium — numerals</p>
-              <p className="text-xl font-bold">700 Bold — display, eyebrow</p>
+              <p className="text-xl font-light">300 Light, lead paragraphs</p>
+              <p className="text-xl font-normal">400 Regular, body copy</p>
+              <p className="text-xl font-medium">500 Medium, numerals</p>
+              <p className="text-xl font-bold">700 Bold, display, eyebrow</p>
             </div>
           </Row>
         </div>
@@ -311,7 +311,7 @@ export default async function StyleguidePage({
               <div className="h-section" />
             </div>
             <Spec>
-              clamp(4rem, 9vw, 8rem) — vertical rhythm, top and bottom of every
+              clamp(4rem, 9vw, 8rem), vertical rhythm, top and bottom of every
               Section
             </Spec>
           </Row>
@@ -461,7 +461,7 @@ export default async function StyleguidePage({
               <Hairline />
               <Hairline variant="short" />
             </div>
-            <Spec>1px neutral-500 · full | short — the only use of that color</Spec>
+            <Spec>1px neutral-500 · full | short, the only use of that color</Spec>
           </Row>
 
           <Row label="Prose">
@@ -579,7 +579,7 @@ export default async function StyleguidePage({
             </p>
             <p className="mt-2 u-body">
               Palabra larga de control: internacionalización
-              constitucionalidad — debe envolver, no desbordar.
+              constitucionalidad, debe envolver, no desbordar.
             </p>
           </div>
         </Container>

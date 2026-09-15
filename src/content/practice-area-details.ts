@@ -2,14 +2,14 @@ import type { PracticeAreaId } from "./practice-areas";
 import type { Localized } from "./types";
 
 /**
- * Detail-page content for each of the 20 frozen practice areas — the
+ * Detail-page content for each of the 20 frozen practice areas, the
  * overview, services and forums sections on /practice-areas/[slug].
  *
  * Regulator and law names are used with reasonable confidence (they are the
  * same references already shipped in practice-areas.ts's short descriptions).
  * No article-level citations are made anywhere. Where a claim would require
  * more precision than that, it is marked TODO for the firm's lawyers rather
- * than guessed — see the TODOs on estructuraDeFinanciamientos' forums list.
+ * than guessed, see the TODOs on estructuraDeFinanciamientos' forums list.
  */
 
 export interface PracticeAreaDetail {
@@ -31,8 +31,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
         en: "Administrative and regulatory law runs through much of the firm's work, because almost any investment or economic activity of meaningful scale in Bolivia depends, at some point, on an authorisation, a licence or an ongoing relationship with a state entity. The firm advises clients on obtaining and maintaining those authorisations, and on their day-to-day dealings with ministries, superintendencies and other supervisory bodies.",
       },
       {
-        es: "Cuando esa relación se vuelve conflictiva —por la denegación de un trámite, una sanción o una interpretación regulatoria desfavorable— el estudio representa a sus clientes en la vía administrativa, agotando los recursos internos de la entidad correspondiente, y, cuando es necesario, en la vía contencioso-administrativa ante la judicatura.",
-        en: "When that relationship turns adversarial — a rejected filing, a sanction, or an unfavourable regulatory interpretation — the firm represents clients through the administrative process, exhausting the relevant entity's internal remedies, and, where necessary, before the courts in judicial review of that administrative action.",
+        es: "Cuando esa relación se vuelve conflictiva (por la denegación de un trámite, una sanción o una interpretación regulatoria desfavorable) el estudio representa a sus clientes en la vía administrativa, agotando los recursos internos de la entidad correspondiente, y, cuando es necesario, en la vía contencioso-administrativa ante la judicatura.",
+        en: "When that relationship turns adversarial (a rejected filing, a sanction, or an unfavourable regulatory interpretation) the firm represents clients through the administrative process, exhausting the relevant entity's internal remedies, and, where necessary, before the courts in judicial review of that administrative action.",
       },
     ],
     services: [
@@ -57,8 +57,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
         en: "Bolivia's hydrocarbons regime is built around YPFB as the holder of all production, operating the sector through petroleum services contracts entered into with operators and contractors. The firm advises those companies on negotiating those contracts, on farm-outs and assignments, and on structuring the joint operations that typically accompany them.",
       },
       {
-        es: "El sector también genera un volumen constante de controversias contractuales y regulatorias —sobre volúmenes, precios, incumplimientos e interpretación de cláusulas— que el estudio atiende tanto por la vía de negociación directa como, cuando corresponde, en arbitraje bajo las cláusulas que suelen incluir estos contratos.",
-        en: "The sector also generates a steady volume of contractual and regulatory disputes — over volumes, pricing, breaches and clause interpretation — which the firm handles both through direct negotiation and, where the contract provides for it, through arbitration.",
+        es: "El sector también genera un volumen constante de controversias contractuales y regulatorias (sobre volúmenes, precios, incumplimientos e interpretación de cláusulas) que el estudio atiende tanto por la vía de negociación directa como, cuando corresponde, en arbitraje bajo las cláusulas que suelen incluir estos contratos.",
+        en: "The sector also generates a steady volume of contractual and regulatory disputes (over volumes, pricing, breaches and clause interpretation) which the firm handles both through direct negotiation and, where the contract provides for it, through arbitration.",
       },
     ],
     services: [
@@ -80,8 +80,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
     id: "electricidad",
     overview: [
       {
-        es: "El sector eléctrico boliviano opera bajo un régimen de licencias y concesiones para generación, transmisión y distribución, con una autoridad de fiscalización que regula tarifas, calidad de servicio y acceso a la red. El estudio asesora a generadores —incluidos proyectos de energías renovables—, transmisores y distribuidores en la obtención de esas licencias y en sus contratos de suministro, conexión y transporte de energía.",
-        en: "Bolivia's electricity sector operates under a licensing and concession regime for generation, transmission and distribution, with a regulator overseeing tariffs, service quality and grid access. The firm advises generators — including renewable energy projects — transmission companies and distributors on obtaining those licences and on their supply, interconnection and transport agreements.",
+        es: "El sector eléctrico boliviano opera bajo un régimen de licencias y concesiones para generación, transmisión y distribución, con una autoridad de fiscalización que regula tarifas, calidad de servicio y acceso a la red. El estudio asesora a generadores (incluidos proyectos de energías renovables), transmisores y distribuidores en la obtención de esas licencias y en sus contratos de suministro, conexión y transporte de energía.",
+        en: "Bolivia's electricity sector operates under a licensing and concession regime for generation, transmission and distribution, with a regulator overseeing tariffs, service quality and grid access. The firm advises generators (including renewable energy projects), transmission companies and distributors on obtaining those licences and on their supply, interconnection and transport agreements.",
       },
       {
         es: "También representamos a nuestros clientes ante la autoridad sectorial en procedimientos sancionatorios y revisiones tarifarias, y en las controversias que surgen dentro del mercado eléctrico mayorista entre generadores, distribuidores y grandes consumidores.",
@@ -110,8 +110,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
         en: "Bolivia's telecommunications and ICT regime requires spectrum licences and registrations to operate, alongside quality-of-service and user-protection obligations overseen by the ATT. The firm advises operators and service providers on obtaining those licences and on their ongoing relationship with the regulator.",
       },
       {
-        es: "Buena parte del trabajo también involucra contratos de infraestructura compartida —torres, fibra, capacidad satelital— y su revisión regulatoria cuando implican un cambio de control, además de la defensa de nuestros clientes en procedimientos sancionatorios iniciados por la ATT.",
-        en: "Much of the work also involves shared-infrastructure agreements — towers, fibre, satellite capacity — and their regulatory review when they involve a change of control, as well as defending clients in enforcement proceedings brought by the ATT.",
+        es: "Buena parte del trabajo también involucra contratos de infraestructura compartida (torres, fibra, capacidad satelital) y su revisión regulatoria cuando implican un cambio de control, además de la defensa de nuestros clientes en procedimientos sancionatorios iniciados por la ATT.",
+        en: "Much of the work also involves shared-infrastructure agreements (towers, fibre, satellite capacity) and their regulatory review when they involve a change of control, as well as defending clients in enforcement proceedings brought by the ATT.",
       },
     ],
     services: [
@@ -157,8 +157,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
     id: "saneamiento-basico",
     overview: [
       {
-        es: "Los operadores de agua potable y alcantarillado en Bolivia —cooperativas, empresas municipales y operadores privados— trabajan bajo licencias y concesiones que definen su área de servicio y su estructura tarifaria, fiscalizadas por la AAPS. El estudio asesora a estos operadores en la obtención y renovación de esas licencias, y en su relación con la autoridad reguladora.",
-        en: "Water and sanitation operators in Bolivia — cooperatives, municipal companies and private operators — work under licences and concessions that define their service area and tariff structure, overseen by the AAPS. The firm advises these operators on obtaining and renewing those licences, and on their relationship with the regulator.",
+        es: "Los operadores de agua potable y alcantarillado en Bolivia (cooperativas, empresas municipales y operadores privados) trabajan bajo licencias y concesiones que definen su área de servicio y su estructura tarifaria, fiscalizadas por la AAPS. El estudio asesora a estos operadores en la obtención y renovación de esas licencias, y en su relación con la autoridad reguladora.",
+        en: "Water and sanitation operators in Bolivia (cooperatives, municipal companies and private operators) work under licences and concessions that define their service area and tariff structure, overseen by the AAPS. The firm advises these operators on obtaining and renewing those licences, and on their relationship with the regulator.",
       },
       {
         es: "También atendemos controversias con usuarios, con los municipios que otorgan las concesiones y con contratistas de obra, incluidas aquellas sometidas a arbitraje conforme a las cláusulas de los contratos de construcción y operación del sector.",
@@ -184,7 +184,7 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
     overview: [
       {
         es: "El estudio asesora en transporte aéreo, terrestre y ferroviario, tres regímenes distintos que comparten la necesidad de un permiso u operación autorizada por el Estado. En transporte aéreo trabajamos con la Dirección General de Aeronáutica Civil en permisos de operación y en asuntos de seguridad operacional; en transporte terrestre y ferroviario, con la ATT en concesiones y licencias.",
-        en: "The firm advises on air, road and rail transport — three distinct regimes that share the need for a state-authorised permit or operation. In air transport we work with the civil aviation authority on operating permits and operational safety matters; in road and rail transport, with the ATT on concessions and licences.",
+        en: "The firm advises on air, road and rail transport, three distinct regimes that share the need for a state-authorised permit or operation. In air transport we work with the civil aviation authority on operating permits and operational safety matters; in road and rail transport, with the ATT on concessions and licences.",
       },
       {
         es: "También asesoramos sobre responsabilidad del transportista y régimen de carga, y representamos a nuestros clientes en procedimientos sancionatorios y en reclamaciones de daños derivadas de siniestros, incluida la coordinación con aseguradoras.",
@@ -209,8 +209,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
     id: "medio-ambiente",
     overview: [
       {
-        es: "Casi todo proyecto de inversión de cierta escala en Bolivia —minero, energético, industrial o inmobiliario— requiere una licencia ambiental bajo la Ley 1333: una ficha ambiental, y según el nivel de riesgo, un estudio de evaluación de impacto ambiental. El estudio acompaña a sus clientes en la preparación y tramitación de esa licencia, y en las auditorías ambientales y planes de adecuación posteriores.",
-        en: "Almost every investment project of meaningful scale in Bolivia — mining, energy, industrial or real estate — requires an environmental licence under Law 1333: an environmental form and, depending on the risk level, an environmental impact assessment study. The firm supports clients through preparing and filing that licence, and through subsequent environmental audits and compliance plans.",
+        es: "Casi todo proyecto de inversión de cierta escala en Bolivia (minero, energético, industrial o inmobiliario) requiere una licencia ambiental bajo la Ley 1333: una ficha ambiental, y según el nivel de riesgo, un estudio de evaluación de impacto ambiental. El estudio acompaña a sus clientes en la preparación y tramitación de esa licencia, y en las auditorías ambientales y planes de adecuación posteriores.",
+        en: "Almost every investment project of meaningful scale in Bolivia (mining, energy, industrial or real estate) requires an environmental licence under Law 1333: an environmental form and, depending on the risk level, an environmental impact assessment study. The firm supports clients through preparing and filing that licence, and through subsequent environmental audits and compliance plans.",
       },
       {
         es: "También asesoramos en procesos de consulta previa y en la gestión de pasivos ambientales, y defendemos a nuestros clientes en procedimientos sancionatorios y, cuando corresponde, en los procesos civiles y penales que puede generar un daño ambiental.",
@@ -261,8 +261,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
     id: "derecho-constitucional",
     overview: [
       {
-        es: "El estudio plantea y defiende acciones de defensa ante el Tribunal Constitucional Plurinacional: acción de amparo constitucional, acción de cumplimiento y acción de libertad, así como acciones de inconstitucionalidad contra normas —incluidas normas tributarias, regulatorias o municipales— que afectan a nuestros clientes.",
-        en: "The firm brings and defends constitutional actions before the Plurinational Constitutional Court: amparo, compliance actions and habeas corpus (acción de libertad), as well as challenges to the constitutionality of rules — including tax, regulatory or municipal rules — that affect our clients.",
+        es: "El estudio plantea y defiende acciones de defensa ante el Tribunal Constitucional Plurinacional: acción de amparo constitucional, acción de cumplimiento y acción de libertad, así como acciones de inconstitucionalidad contra normas (incluidas normas tributarias, regulatorias o municipales) que afectan a nuestros clientes.",
+        en: "The firm brings and defends constitutional actions before the Plurinational Constitutional Court: amparo, compliance actions and habeas corpus (acción de libertad), as well as challenges to the constitutionality of rules (including tax, regulatory or municipal rules) that affect our clients.",
       },
       {
         es: "Buena parte de este trabajo surge dentro de otros asuntos: una medida administrativa o judicial que vulnera un derecho fundamental exige, con frecuencia, una acción constitucional paralela. El estudio también asesora, de forma preventiva, sobre el alcance de derechos y garantías en materia económica y de inversión bajo la Constitución de 2009.",
@@ -449,8 +449,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
         en: "The firm designs compliance programmes calibrated to Bolivian risk, not generic templates carried over from another jurisdiction. That includes anti-money-laundering policies aligned with the standards of the Financial Investigations Unit (UIF), and anti-corruption policies under Law 004, coordinated with international frameworks such as the US FCPA and the UK Bribery Act where the client also answers to those regimes.",
       },
       {
-        es: "Este trabajo se traduce en investigaciones internas cuando surge una alerta o una denuncia, capacitación a equipos locales, y debida diligencia de contrapartes —distribuidores, agentes, socios locales— antes de formalizar una relación comercial en Bolivia.",
-        en: "This work translates into internal investigations when a red flag or complaint arises, training for local teams, and due diligence on counterparties — distributors, agents, local partners — before a business relationship in Bolivia is formalised.",
+        es: "Este trabajo se traduce en investigaciones internas cuando surge una alerta o una denuncia, capacitación a equipos locales, y debida diligencia de contrapartes (distribuidores, agentes, socios locales) antes de formalizar una relación comercial en Bolivia.",
+        en: "This work translates into internal investigations when a red flag or complaint arises, training for local teams, and due diligence on counterparties (distributors, agents, local partners) before a business relationship in Bolivia is formalised.",
       },
     ],
     services: [
@@ -496,8 +496,8 @@ export const practiceAreaDetails: readonly PracticeAreaDetail[] = [
     id: "derecho-familiar",
     overview: [
       {
-        es: "El estudio atiende asuntos de familia con la discreción que exigen: divorcio y separación, régimen de bienes, asistencia familiar, filiación, adopción y autorizaciones judiciales, bajo el Código de las Familias y del Proceso Familiar. Muchos de estos asuntos involucran, además, un componente patrimonial relevante —empresas familiares, inmuebles, participaciones societarias— que requiere coordinación con el trabajo societario y sucesorio del estudio.",
-        en: "The firm handles family matters with the discretion they require: divorce and separation, matrimonial property, maintenance, filiation, adoption and judicial authorisations, under the Family and Family Process Code. Many of these matters also carry a significant asset component — family businesses, real estate, shareholdings — that calls for coordination with the firm's corporate and succession work.",
+        es: "El estudio atiende asuntos de familia con la discreción que exigen: divorcio y separación, régimen de bienes, asistencia familiar, filiación, adopción y autorizaciones judiciales, bajo el Código de las Familias y del Proceso Familiar. Muchos de estos asuntos involucran, además, un componente patrimonial relevante (empresas familiares, inmuebles, participaciones societarias) que requiere coordinación con el trabajo societario y sucesorio del estudio.",
+        en: "The firm handles family matters with the discretion they require: divorce and separation, matrimonial property, maintenance, filiation, adoption and judicial authorisations, under the Family and Family Process Code. Many of these matters also carry a significant asset component (family businesses, real estate, shareholdings) that calls for coordination with the firm's corporate and succession work.",
       },
       {
         es: "Para familias empresarias en particular, asesoramos en acuerdos prenupciales y en la planificación sucesoria que anticipa cómo se distribuirá la propiedad de la empresa familiar, buscando prevenir disputas que, de otro modo, podrían derivar en litigio familiar y afectar la continuidad del negocio.",

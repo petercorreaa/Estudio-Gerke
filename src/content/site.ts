@@ -1,8 +1,8 @@
 /**
  * Firm identity and contact details.
  *
- * These values are identical in both locales — a street address and a phone
- * number do not get translated — so they are plain strings, not `Localized`.
+ * These values are identical in both locales, a street address and a phone
+ * number do not get translated, so they are plain strings, not `Localized`.
  * The labels that introduce them ("Dirección" / "Address") live in `ui.ts`.
  */
 
@@ -29,10 +29,10 @@ export const site = {
   city: "La Paz",
   country: "Bolivia",
   phones: ["(591-2) 2790334", "(591-2) 2790344"],
-  // TODO: client to confirm. Leave empty until then — do not invent an address.
+  // TODO: client to confirm. Leave empty until then, do not invent an address.
   // Components must treat "" as "no email yet" and render nothing.
   email: "",
-  // TODO: approximate — centers the /contact map embed on the Calacoto
+  // TODO: approximate, centers the /contact map embed on the Calacoto
   // neighborhood in La Paz. Refine to the exact building once the firm
   // confirms precise coordinates for Av. Julio C. Patiño Nº 1377. The
   // "Ver en Google Maps" link next to the embed geocodes the real address

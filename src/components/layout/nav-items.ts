@@ -13,7 +13,7 @@ export interface NavItem {
 
 /**
  * The five primary sections, shared by the desktop nav, the mobile overlay
- * and the footer sitemap column — one list, three renderings.
+ * and the footer sitemap column, one list, three renderings.
  */
 export const NAV_ITEMS: readonly NavItem[] = [
   { href: "/firm-profile", labelKey: "firmProfile" },

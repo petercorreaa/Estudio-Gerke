@@ -3,10 +3,10 @@ import { BracketFrame } from "@/components/ui";
 
 /**
  * How MDX article bodies map onto the design system. Passed to `compileMDX`
- * from the article page — see DESIGN.md's Publications section.
+ * from the article page, see DESIGN.md's Publications section.
  *
  * `.u-prose` (the class the article body renders inside, via <Prose>) already
- * styles p/strong/a/ul/ol with brand-600 markers — see globals.css. What it
+ * styles p/strong/a/ul/ol with brand-600 markers, see globals.css. What it
  * does not cover, because they need actual component structure rather than a
  * bare-tag CSS rule, are these four.
  */

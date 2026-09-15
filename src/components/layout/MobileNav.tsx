@@ -33,7 +33,7 @@ const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled])';
 /**
  * Full-screen mobile nav panel. Stays mounted at all times (so the 280ms
  * fade/slide can transition both ways) and is made properly inert while
- * closed via the `inert` attribute — invisible, unfocusable and hidden from
+ * closed via the `inert` attribute, invisible, unfocusable and hidden from
  * assistive tech in one step, on top of the CSS opacity/transform.
  */
 export function MobileNav({ locale, open, onClose, items }: MobileNavProps) {

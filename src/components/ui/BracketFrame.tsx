@@ -18,7 +18,7 @@ type BracketFrameProps = {
 /**
  * The firm's logo motif: a 2px rounded rule that opens on one side.
  *
- * Use it deliberately, not decoratively — one bracket per idea, never nested,
+ * Use it deliberately, not decoratively, one bracket per idea, never nested,
  * never on every card in a grid. See CLAUDE.md and DESIGN.md §4.
  */
 

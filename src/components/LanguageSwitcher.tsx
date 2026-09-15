@@ -13,7 +13,7 @@ type LanguageSwitcherProps = {
   locale: Locale;
   /** `light` for white backgrounds (header, body copy). `dark` for the brand-900 mobile panel. */
   tone?: LanguageSwitcherTone;
-  /** Fires when a language link is activated — the mobile panel uses this to close itself. */
+  /** Fires when a language link is activated, the mobile panel uses this to close itself. */
   onNavigate?: () => void;
   className?: string;
 };
@@ -23,7 +23,7 @@ const toneClasses: Record<
   { active: string; inactive: string; separator: string }
 > = {
   // Active: brand-900 (near-black, ~10:1 on white). Inactive: brand-ink, the
-  // system's sanctioned "small teal text on white" (6.71:1) — not
+  // system's sanctioned "small teal text on white" (6.71:1), not
   // neutral-500, which fails AA for text under CLAUDE.md rule 4.
   light: {
     active: "text-brand-900",
@@ -35,8 +35,7 @@ const toneClasses: Record<
     inactive: "text-paper/75 hover:text-paper",
     separator: "text-paper/40",
   },
-  // brand-700 (the header's scrolled state) is only 4.57:1 against white —
-  // unlike brand-900's 11.3:1, there's no headroom left to dim inactive text
+  // brand-700 (the header's scrolled state) is only 4.57:1 against white, // unlike brand-900's 11.3:1, there's no headroom left to dim inactive text
   // and stay AA. Both states stay full paper; hover gets an underline
   // instead of a color shift for its affordance.
   teal: {
@@ -47,7 +46,7 @@ const toneClasses: Record<
 };
 
 /**
- * Switches language while staying on the same page — including detail routes,
+ * Switches language while staying on the same page, including detail routes,
  * where the slug itself has to be translated (`/es/areas-de-practica/mineria`
  * -> `/en/practice-areas/mining`). Falls back to the home page only when the
  * current route genuinely has no counterpart.

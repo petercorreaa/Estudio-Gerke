@@ -6,7 +6,7 @@ import { NAV_ITEMS } from "./nav-items";
 import type { Locale } from "@/i18n/routing";
 
 /**
- * Server component — no interactivity beyond plain anchors and the
+ * Server component, no interactivity beyond plain anchors and the
  * locale-aware <Link>, so no "use client" boundary needed.
  */
 export function Footer({ locale }: { locale: Locale }) {
@@ -18,7 +18,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
         {/* Identity */}
         <div>
-          {/* Adjacent text already carries the firm name — decorative image.
+          {/* Adjacent text already carries the firm name, decorative image.
               Explicit width/height prevent layout shift while it loads. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-white.png" alt="" width={1195} height={1114} className="h-10 w-auto" />

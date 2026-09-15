@@ -5,7 +5,7 @@ import { setRequestLocale } from "next-intl/server";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { getDictionary, getLawyerBySlug, format } from "@/content";
-// Server-only — see the note in src/content/index.ts.
+// Server-only, see the note in src/content/index.ts.
 import { getArticleBySlug, getPublishedArticles, getRelatedArticles } from "@/content/publications-loader";
 import type { ArticleFrontmatter } from "@/content/publications-loader";
 import { Section, Eyebrow, Button, BracketFrame, Prose } from "@/components/ui";
@@ -137,7 +137,7 @@ export default async function ArticlePage({
 
         {article.pdfUrl ? (
           <div className="mt-8">
-            {/* A trusted, author-supplied URL from frontmatter — not
+            {/* A trusted, author-supplied URL from frontmatter, not
                 necessarily an internal route, so this bypasses <Button>'s
                 typed href (internal route object | strict external template)
                 and is styled to match its ghost variant directly. */}

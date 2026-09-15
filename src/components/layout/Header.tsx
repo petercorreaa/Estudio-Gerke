@@ -23,7 +23,7 @@ function HamburgerIcon() {
 }
 
 /**
- * Sticky site header. Calm on purpose per CLAUDE.md rule 2 — no shrinking,
+ * Sticky site header. Calm on purpose per CLAUDE.md rule 2, no shrinking,
  * no hide-on-scroll. Past 8px of scroll the bar crossfades from paper to
  * brand-700 (nav text, rule and logo swap to their on-dark equivalents along
  * with it) plus a shadow; all color-only, 200ms, same ceiling as every other
@@ -55,7 +55,7 @@ export function Header({ locale }: { locale: Locale }) {
   // The mobile nav is a full-screen overlay, but `aria-modal` alone is not
   // reliably enough for every assistive technology to treat everything
   // beneath it as hidden. Marking `main` and the footer `inert` while open
-  // closes that gap — this bar's own trigger row is handled below via the
+  // closes that gap, this bar's own trigger row is handled below via the
   // `inert` prop directly, since it's in this component's own tree.
   useEffect(() => {
     const main = document.getElementById("main-content");
@@ -93,7 +93,7 @@ export function Header({ locale }: { locale: Locale }) {
         // `gap-6` is a floor, not the usual spacing: right at the `lg`
         // breakpoint the logo steps up to its larger size in the same
         // instant the nav reveals, and `justify-between` alone let the two
-        // land flush against each other with zero space between — the
+        // land flush against each other with zero space between, the
         // 1024px-wide "no gap" case a spacing audit exists to catch.
         className="u-container flex h-16 items-center justify-between gap-6 lg:h-22"
       >
@@ -102,7 +102,7 @@ export function Header({ locale }: { locale: Locale }) {
           aria-label={ui.aria.homeLink}
           className="shrink-0 rounded-bracket"
         >
-          {/* Ratio-locked height only — never stretched, never recolored.
+          {/* Ratio-locked height only, never stretched, never recolored.
               width/height attrs (matching the SVG's intrinsic ratio) let the
               browser reserve the box before the file loads, so nothing
               shifts once it does. Source swaps with scroll state, same as
@@ -130,7 +130,7 @@ export function Header({ locale }: { locale: Locale }) {
                   className={cn(
                     "text-[0.78rem] font-medium uppercase tracking-[0.12em] transition-colors duration-200 ease-out",
                     scrolled
-                      ? // brand-700 is only 4.57:1 against white — no headroom to
+                      ? // brand-700 is only 4.57:1 against white, no headroom to
                         // dim inactive text the way the light/dark tones do
                         // elsewhere; the underline bar below is what marks
                         // active vs. hover here instead.

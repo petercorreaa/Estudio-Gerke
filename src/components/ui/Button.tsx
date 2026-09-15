@@ -9,7 +9,7 @@ import { Link } from "@/i18n/navigation";
 
 export type ButtonVariant = "primary" | "ghost";
 
-/** Routes declared in the slug map — typed, so a bad link fails the build. */
+/** Routes declared in the slug map, typed, so a bad link fails the build. */
 type InternalHref = ComponentProps<typeof Link>["href"];
 
 type ExternalHref =
@@ -50,7 +50,7 @@ const base = cn(
 );
 
 const variants: Record<ButtonVariant, string> = {
-  // Solid brand-700 with white copy — 4.57:1 white-on-brand-700 inverted.
+  // Solid brand-700 with white copy, 4.57:1 white-on-brand-700 inverted.
   primary: cn(
     "bg-brand-700 border-brand-700 text-paper",
     "hover:bg-brand-900 hover:border-brand-900",

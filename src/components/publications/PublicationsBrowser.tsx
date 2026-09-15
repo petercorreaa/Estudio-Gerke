@@ -30,7 +30,7 @@ export function PublicationsBrowser({
   labels,
 }: {
   articles: readonly ArticleCardData[];
-  /** Only the areas actually used by at least one article — see the page. */
+  /** Only the areas actually used by at least one article, see the page. */
   areas: readonly BrowserArea[];
   locale: Locale;
   labels: BrowserLabels;

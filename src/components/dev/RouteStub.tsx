@@ -6,7 +6,7 @@ import { Section, SectionTitle, Prose } from "@/components/ui";
  * yet. Renders the route's title and meta description so the slug map and
  * layout shell can be exercised end to end.
  *
- * Delete this component — and the whole `components/dev/` folder — as each
+ * Delete this component (and the whole `components/dev/` folder) as each
  * real page lands. It renders no `<main>` of its own; the locale layout
  * supplies the single sitewide `<main id="main-content">` landmark.
  */

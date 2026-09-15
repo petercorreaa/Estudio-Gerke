@@ -11,7 +11,7 @@ import { pathnames, type AppPathname, type Locale } from "./routing";
  * is the value inside a dynamic segment: `/es/areas-de-practica/mineria` has to
  * become `/en/practice-areas/mining`, not `/en/practice-areas/mineria`. These
  * helpers close that gap so the language switcher always lands on the same
- * page — never the home page.
+ * page, never the home page.
  */
 
 /** An internal href, ready to hand to `getPathname` / `<Link>`. */
@@ -54,7 +54,7 @@ function findArticleTranslationKey(slug: string, from: Locale): string | undefin
  * Article slug in `from` -> the same article's slug in `to`. Unlike the other
  * translators here, this never signals "no counterpart" with `undefined`: if
  * the article hasn't been written in `to` yet, it resolves to the
- * publications index in that language instead — the switcher must never
+ * publications index in that language instead, the switcher must never
  * point at a 404.
  */
 export function translateArticleHref(slug: string, from: Locale, to: Locale): InternalHref {
@@ -71,7 +71,7 @@ export function translateArticleHref(slug: string, from: Locale, to: Locale): In
  * `pathname` is what next-intl's `usePathname()` returns: the internal route
  * with locale and localized static segments already stripped. Depending on the
  * route it may still carry either the resolved slug (`/lawyers/diana`) or the
- * template (`/lawyers/[slug]`), so `slug` — read from `useParams()` — is
+ * template (`/lawyers/[slug]`), so `slug` (read from `useParams()`) is
  * accepted as a fallback.
  *
  * Returns `undefined` when the route has no counterpart, which the caller

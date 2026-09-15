@@ -3,14 +3,14 @@
  *
  * `LanguageSwitcher` runs in the browser and must never import the MDX
  * loader (`publications-loader.ts`, which reads the filesystem and cannot be
- * bundled for the client) — so it uses this small, plain, hand-maintained
+ * bundled for the client), so it uses this small, plain, hand-maintained
  * mapping instead. The loader cross-checks every article's `translationKey`
  * against this file at load time and throws if they disagree, so drift here
  * fails the build rather than silently producing a wrong language-switch
  * link.
  *
  * Adding a new article: add its `translationKey`/`slug` here too. An article
- * with only one language published so far is fine — just omit the other
+ * with only one language published so far is fine, just omit the other
  * locale's slug; the switcher falls back to the publications index rather
  * than linking to a 404.
  */

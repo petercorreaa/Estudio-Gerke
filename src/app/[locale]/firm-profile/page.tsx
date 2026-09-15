@@ -20,7 +20,7 @@ export async function generateMetadata({
 
 /**
  * A title in the left rail and body copy on the right, at >=1024px. Below
- * that, both release to normal single-column flow — including `sticky`,
+ * that, both release to normal single-column flow, including `sticky`,
  * which only applies at the `lg` breakpoint.
  */
 function ReadingRail({

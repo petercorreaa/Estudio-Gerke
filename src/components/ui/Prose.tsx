@@ -11,7 +11,7 @@ type ProseProps = {
 
 /**
  * Running copy: 68ch measure, #1A1A1A, 1.7 leading.
- * Body copy is never teal and never grey — CLAUDE.md rule 4.
+ * Body copy is never teal and never grey, CLAUDE.md rule 4.
  */
 export function Prose({
   as: Tag = "div",

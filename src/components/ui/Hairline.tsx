@@ -9,7 +9,7 @@ type HairlineProps = {
 };
 
 /**
- * 1px divider in neutral-500 — the one sanctioned use of that color.
+ * 1px divider in neutral-500, the one sanctioned use of that color.
  * It never carries text. See DESIGN.md §1.
  */
 export function Hairline({

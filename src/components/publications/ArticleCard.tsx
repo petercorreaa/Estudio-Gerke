@@ -12,7 +12,7 @@ export interface ArticleCardData
 
 export interface ArticleCardLabels {
   readonly readMore: string;
-  /** "{minutes} min de lectura" / "{minutes} min read" — templated with format(). */
+  /** "{minutes} min de lectura" / "{minutes} min read", templated with format(). */
   readonly readingTime: string;
 }
 
@@ -26,7 +26,7 @@ function formatDate(date: string, locale: Locale): string {
 
 /**
  * The standard (non-featured) article card. The featured treatment on the
- * index page is a distinct layout, not a size variant of this one — see
+ * index page is a distinct layout, not a size variant of this one, see
  * PublicationsBrowser.
  */
 export function ArticleCard({
@@ -40,7 +40,7 @@ export function ArticleCard({
   labels: ArticleCardLabels;
   /** 3 when nested under a featured article's h2; 2 when this card is the
    * first subheading after the page's h1 (e.g. a filtered result grid with
-   * no featured article) — callers must not let a bare h3 follow the h1. */
+   * no featured article), callers must not let a bare h3 follow the h1. */
   headingLevel?: 2 | 3;
 }) {
   const TitleTag = headingLevel === 2 ? "h2" : "h3";

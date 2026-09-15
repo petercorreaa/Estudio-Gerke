@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { getDictionary, format, getPracticeAreaById } from "@/content";
-// Server-only (reads the filesystem) — imported directly, not through the
+// Server-only (reads the filesystem), imported directly, not through the
 // @/content barrel, which client components also pull from. See the note in
 // src/content/index.ts.
 import { getPublishedArticles } from "@/content/publications-loader";
@@ -74,33 +74,45 @@ export default async function HomePage({
 
   return (
     <>
-      {/* ============================================================ 1. HERO */}
-      <Section tone="paper" className="pb-16 lg:pb-28">
-        <div className="pt-6 lg:flex lg:items-center lg:justify-between lg:gap-16 lg:pt-20">
-          <div className="max-w-[46ch]">
-            <Eyebrow>{home.hero.eyebrow}</Eyebrow>
-            <h1 className="u-display mt-4 max-w-[14ch] text-[clamp(2rem,5.5vw,4rem)]">
-              {home.hero.title}
-            </h1>
-            <div className="mt-6 max-w-[52ch]">
-              <Prose lead>{home.hero.lead}</Prose>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button href={{ pathname: "/practice-areas" }}>{ui.nav.practiceAreas}</Button>
-              <Button variant="ghost" href={{ pathname: "/contact" }}>
-                {ui.nav.contact}
-              </Button>
-            </div>
-          </div>
-
-          <div className="mt-16 shrink-0 lg:mt-0">
-            <BracketFrame openSide="right" className="flex flex-col items-center px-10 py-10 text-center lg:px-14 lg:py-14">
-              <p className="u-num text-[clamp(4rem,14vw,8rem)] leading-none">{site.founded}</p>
-              <p className="mt-4 max-w-[20ch] text-sm text-ink/80">{home.hero.numeralCaption}</p>
-            </BracketFrame>
+      {/* ============================================================ 1. HERO
+          The copy sits in the optical centre of the viewport, both calls to
+          action directly beneath it, over a teal gradient rising from the
+          bottom edge. The hero is sized to the viewport minus the sticky
+          header so "centred" means centred in what the visitor actually sees. */}
+      {/* A plain <section>, not <Section>: the hero sets its own vertical
+          rhythm from the viewport, and Section's py-section would fight the
+          bottom padding that keeps the copy clear of the teal band. */}
+      <section className="u-hero bg-paper text-ink">
+        <div aria-hidden="true" className="u-hero-glow" />
+        {/* pb-52 is the 13rem of --hero-glow-height, kept as a literal so the
+            copy can never drift down into the tinted band. A bespoke
+            side-padding scale, not u-container's, so the headline gets the
+            extra width it needs to hold to one line down to 360px. */}
+        <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-[var(--container-site)] flex-col items-center justify-center px-4 pt-16 pb-52 text-center sm:px-6 lg:min-h-[calc(100svh-5.5rem)] lg:px-10">
+          <BracketFrame variant="marker" openSide="right" />
+          <Eyebrow className="mt-6">{home.hero.eyebrow}</Eyebrow>
+          {/*
+            Sized to hold the longest headline (the Spanish one, 26 characters
+            including spaces) on one line at every breakpoint: 5.5vw tracks
+            that string's width against the hero's own reduced side padding
+            down to 360px, and the 4.1875rem ceiling is the largest size that
+            still fits once the padding jumps to lg:px-10 inside the
+            1200px-capped container, so wider viewports never re-overflow it.
+          */}
+          <h1 className="u-display mt-5 whitespace-nowrap text-[clamp(1rem,5.5vw,4.1875rem)]">
+            {home.hero.title}
+          </h1>
+          <Prose lead className="mx-auto mt-6 max-w-[56ch]">
+            {home.hero.lead}
+          </Prose>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Button href={{ pathname: "/practice-areas" }}>{ui.nav.practiceAreas}</Button>
+            <Button variant="ghost" href={{ pathname: "/contact" }}>
+              {ui.nav.contact}
+            </Button>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* ==================================================== 2. POSITIONING */}
       <Reveal>
@@ -178,7 +190,7 @@ export default async function HomePage({
 
       {/* ============================================ 5. PUBLICATIONS PREVIEW */}
       {/* Omitted entirely when nothing is published yet (all seed content
-          ships as status: "draft" — see src/content/publications/) rather
+          ships as status: "draft", see src/content/publications/) rather
           than showing a title over an empty grid. */}
       {recentArticles.length > 0 ? (
         <Section tone="paper">

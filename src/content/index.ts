@@ -20,11 +20,10 @@ export {
 export {
   lawyers,
   getLawyerBySlug,
-  isLawyerComplete,
-  hasLawyerField,
   lawyerProfileLabels,
+  LAWYER_PHOTO_WIDTH,
+  LAWYER_PHOTO_HEIGHT,
   type Lawyer,
-  type LawyerField,
   type LawyerSlug,
 } from "./lawyers";
 export { home, type HomeContent } from "./home";
@@ -36,7 +35,7 @@ export {
 } from "./practice-area-details";
 // NOTE: publications-loader.ts is deliberately NOT re-exported here. It reads
 // the filesystem, and this barrel is imported by client components
-// (LanguageSwitcher, via getDictionary) — bundling `fs` for the browser
+// (LanguageSwitcher, via getDictionary), bundling `fs` for the browser
 // breaks the build. Server components (page.tsx files) import it directly:
 // `import { getPublishedArticles } from "@/content/publications-loader"`.
 export { publicationLabels, type PublicationLabels } from "./publications-labels";
@@ -74,7 +73,7 @@ const dictionaries: Readonly<Record<Locale, Dictionary>> = {
  * The single entry point for site copy.
  *
  * Synchronous on purpose: the content lives in TypeScript modules, not on
- * disk, so there is nothing to await — and both locales are resolved once at
+ * disk, so there is nothing to await, and both locales are resolved once at
  * module load rather than on every render.
  *
  *   const t = getDictionary(locale);

@@ -5,14 +5,14 @@ import { cn } from "@/lib/cn";
 
 type RevealProps = {
   as?: ElementType;
-  /** Stagger in ms. Keep small — total motion must stay under 400ms. */
+  /** Stagger in ms. Keep small, total motion must stay under 400ms. */
   delay?: number;
   className?: string;
   children: ReactNode;
 };
 
 /**
- * revealOnScroll — the ONLY animation in this system.
+ * revealOnScroll, the ONLY animation in this system.
  *
  * opacity 0 -> 1, translateY 12px -> 0, 360ms ease-out, fired once via
  * IntersectionObserver, fully disabled under prefers-reduced-motion: reduce.

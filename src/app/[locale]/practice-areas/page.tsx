@@ -38,7 +38,7 @@ export default async function PracticeAreasPage({
         </Prose>
       </Section>
 
-      {/* The 20 areas — the hero of this page. CSS multi-column (not grid) so
+      {/* The 20 areas, the hero of this page. CSS multi-column (not grid) so
           reading order stays 01->20 top-to-bottom within a column, then wraps
           to the next column, rather than interleaving left-right. */}
       <Section tone="paper">

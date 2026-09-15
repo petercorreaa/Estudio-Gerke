@@ -13,7 +13,7 @@ type Values = Record<FieldName, string>;
 type Errors = Partial<Record<"name" | "email" | "phone" | "message", string>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
-/** Visual top-to-bottom order — used to focus the first invalid field on submit. */
+/** Visual top-to-bottom order, used to focus the first invalid field on submit. */
 const FIELD_ORDER: readonly (keyof Errors)[] = ["name", "email", "phone", "message"];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -89,7 +89,7 @@ export function ContactForm({
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       // Move focus to the first invalid field so its label and error are
-      // announced immediately — without this, a screen-reader user gets no
+      // announced immediately, without this, a screen-reader user gets no
       // feedback at all that the submission failed, since nothing else here
       // is a live region.
       const firstInvalid = FIELD_ORDER.find((field) => nextErrors[field]);
@@ -145,7 +145,7 @@ export function ContactForm({
         </div>
       ) : null}
 
-      {/* Honeypot — invisible and unreachable by keyboard/AT, real users never fill it. */}
+      {/* Honeypot, invisible and unreachable by keyboard/AT, real users never fill it. */}
       <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
         <label htmlFor="contact-website">Website</label>
         <input

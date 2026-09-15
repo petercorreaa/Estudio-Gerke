@@ -23,7 +23,7 @@ const payloadSchema = z.object({
   startedAt: z.number(),
 });
 
-/** Simple in-memory rate limiter — fine for a low-traffic boutique-firm site. */
+/** Simple in-memory rate limiter, fine for a low-traffic boutique-firm site. */
 const submissionsByIp = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(ip: string): boolean {
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
       from: `${site.shortName} <${fromEmail}>`,
       to: toEmail,
       replyTo: data.email,
-      subject: `${site.shortName} — ${labels.name}: ${data.name}`,
+      subject: `${site.shortName}, ${labels.name}: ${data.name}`,
       text: lines.join("\n"),
     });
 

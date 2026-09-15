@@ -2,15 +2,13 @@ import type { Localized } from "./types";
 
 /**
  * Copy specific to the home page. Generic, reusable interface strings stay in
- * ui.ts — this file holds structured content only the home page uses.
+ * ui.ts, this file holds structured content only the home page uses.
  */
 
 export interface HomeHero {
   readonly eyebrow: Localized;
   readonly title: Localized;
   readonly lead: Localized;
-  /** One line under the hero's large "1971" numeral. */
-  readonly numeralCaption: Localized;
 }
 
 export interface PositioningItem {
@@ -55,10 +53,6 @@ export const home = {
       es: "Asesoramos a corporaciones extranjeras que invierten en Bolivia y a familias empresarias bolivianas en sus asuntos más consecuentes, combinando el trabajo consultivo con una práctica activa de litigio y arbitraje.",
       en: "We advise foreign corporations investing in Bolivia and Bolivian business families on their most consequential matters, combining advisory work with an active litigation and arbitration practice.",
     },
-    numeralCaption: {
-      es: "Años de trayectoria ininterrumpida en La Paz",
-      en: "Years of uninterrupted practice in La Paz",
-    },
   },
 
   positioning: [
@@ -97,7 +91,7 @@ export const home = {
       },
       {
         es: "A lo largo de su trayectoria, el estudio ha participado en la redacción de propuestas normativas que fueron posteriormente promulgadas a nivel nacional por la Asamblea Legislativa Plurinacional, una experiencia que informa directamente el asesoramiento regulatorio que hoy presta a sus clientes.",
-        en: "Over the course of its history, the firm has taken part in drafting regulatory proposals that were later enacted nationally by the Plurinational Legislative Assembly — experience that directly informs the regulatory advice it provides to clients today.",
+        en: "Over the course of its history, the firm has taken part in drafting regulatory proposals that were later enacted nationally by the Plurinational Legislative Assembly, experience that directly informs the regulatory advice it provides to clients today.",
       },
     ],
     stats: [

@@ -10,7 +10,7 @@ import "../globals.css";
 
 /**
  * Ubuntu is the only family on this site (DESIGN.md §2).
- * latin-ext is required — Spanish copy needs í, ó, ñ.
+ * latin-ext is required, Spanish copy needs í, ó, ñ.
  */
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
@@ -34,7 +34,7 @@ export async function generateMetadata({
   return {
     title: {
       default: site.name,
-      template: `%s — ${site.shortName}`,
+      template: `%s, ${site.shortName}`,
     },
     description: ui.pages.home.description,
   };

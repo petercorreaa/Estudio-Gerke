@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
-import { getDictionary, hasLawyerField } from "@/content";
+import { getDictionary, LAWYER_PHOTO_WIDTH, LAWYER_PHOTO_HEIGHT } from "@/content";
 import { Section, SectionTitle, Prose, BracketFrame, Hairline } from "@/components/ui";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+
+/** Portraits above the fold on the widest grid; the rest load lazily. */
+const EAGER_PORTRAIT_COUNT = 3;
 
 export async function generateMetadata({
   params,
@@ -25,7 +29,7 @@ export default async function LawyersPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const { ui, lawyers, practiceAreas } = getDictionary(locale);
+  const { ui, lawyers } = getDictionary(locale);
 
   return (
     <>
@@ -39,48 +43,37 @@ export default async function LawyersPage({
       </Section>
 
       <Section tone="paper">
-        <ul aria-label={ui.aria.lawyerList} className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-          {lawyers.map((lawyer) => {
-            const showRole = hasLawyerField(lawyer, "role");
-            const areaNames = hasLawyerField(lawyer, "practiceAreaIds")
-              ? lawyer.practiceAreaIds
-                  .slice(0, 3)
-                  .map((id) => practiceAreas.find((area) => area.id === id)?.name)
-                  .filter((name): name is string => Boolean(name))
-              : [];
-
-            return (
-              <li key={lawyer.slug}>
-                <Link
-                  href={{ pathname: "/lawyers/[slug]", params: { slug: lawyer.slug } }}
-                  className="group block h-full"
+        <ul
+          aria-label={ui.aria.lawyerList}
+          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
+        >
+          {lawyers.map((lawyer, i) => (
+            <li key={lawyer.slug}>
+              <Link
+                href={{ pathname: "/lawyers/[slug]", params: { slug: lawyer.slug } }}
+                className="group block h-full"
+              >
+                <BracketFrame
+                  tone="muted"
+                  openSide="right"
+                  className="flex h-full flex-col p-5 transition-[border-color,translate] duration-200 ease-out hover:-translate-y-0.5 hover:border-brand-700 lg:p-6"
                 >
-                  <BracketFrame
-                    tone="muted"
-                    openSide="right"
-                    className="flex h-full flex-col p-6 transition-[border-color,translate] duration-200 ease-out hover:-translate-y-0.5 hover:border-brand-700 lg:p-7"
-                  >
-                    <span className="u-display u-h3 block">{lawyer.name}</span>
-                    {showRole ? (
-                      <span className="mt-1 block text-sm text-brand-ink">{lawyer.role}</span>
-                    ) : null}
-                    {areaNames.length > 0 ? (
-                      <>
-                        <Hairline className="mb-3 mt-4" />
-                        <ul className="flex flex-col gap-1">
-                          {areaNames.map((name) => (
-                            <li key={name} className="text-sm text-ink">
-                              {name}
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    ) : null}
-                  </BracketFrame>
-                </Link>
-              </li>
-            );
-          })}
+                  <Image
+                    src={lawyer.photo}
+                    alt={lawyer.name}
+                    width={LAWYER_PHOTO_WIDTH}
+                    height={LAWYER_PHOTO_HEIGHT}
+                    sizes="(min-width: 1024px) 22rem, (min-width: 640px) 45vw, 90vw"
+                    priority={i < EAGER_PORTRAIT_COUNT}
+                    className="h-auto w-full rounded-bracket rounded-r-none object-cover"
+                  />
+                  <Hairline className="mb-4 mt-5" />
+                  <span className="u-display u-h3 block">{lawyer.name}</span>
+                  <span className="mt-1 block text-sm text-brand-ink">{lawyer.role}</span>
+                </BracketFrame>
+              </Link>
+            </li>
+          ))}
         </ul>
       </Section>
     </>

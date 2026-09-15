@@ -3,7 +3,7 @@ import type { Localized } from "./types";
 /**
  * Every piece of interface copy on the site, in both languages.
  *
- * Components must never hardcode a user-visible string — read it from here via
+ * Components must never hardcode a user-visible string, read it from here via
  * `getDictionary(locale)`. Keeping ES and EN adjacent is what makes CLAUDE.md
  * rule 6 (equal quality in both languages) reviewable at a glance.
  */
@@ -54,7 +54,7 @@ export const ui = {
     label: { es: "Idioma", en: "Language" },
     es: { es: "Español", en: "Spanish" },
     en: { es: "Inglés", en: "English" },
-    /** Shown on the switcher itself — always in the target language. */
+    /** Shown on the switcher itself, always in the target language. */
     esShort: { es: "ES", en: "ES" },
     enShort: { es: "EN", en: "EN" },
   },
@@ -65,7 +65,7 @@ export const ui = {
     phoneLabel: { es: "Teléfonos", en: "Telephone" },
     emailLabel: { es: "Correo electrónico", en: "Email" },
     hoursLabel: { es: "Horario de atención", en: "Office hours" },
-    /** Confirmed by the firm. The specific opening/closing times are not — see TODO. */
+    /** Confirmed by the firm. The specific opening/closing times are not, see TODO. */
     hoursDays: { es: "Lunes a viernes", en: "Monday to Friday" },
     mapLinkLabel: { es: "Ver en Google Maps", en: "View on Google Maps" },
     mapFrameTitle: {
@@ -165,7 +165,7 @@ export const ui = {
     currentPage: { es: "Página actual", en: "Current page" },
     practiceAreaList: { es: "Lista de áreas de práctica", en: "List of practice areas" },
     lawyerList: { es: "Lista de abogados", en: "List of lawyers" },
-    homeLink: { es: "Estudio Jurídico Gerke — inicio", en: "Estudio Jurídico Gerke — home" },
+    homeLink: { es: "Estudio Jurídico Gerke, inicio", en: "Estudio Jurídico Gerke, home" },
     requiredField: { es: "Campo obligatorio", en: "Required field" },
     contactForm: { es: "Formulario de contacto", en: "Contact form" },
   },
@@ -202,7 +202,7 @@ export const ui = {
       },
       /** Index-page eyebrow, distinct from the page title itself. */
       eyebrow: { es: "Lo que hacemos", en: "What We Do" },
-      /** Index-page lead paragraph — longer and more specific than `description`. */
+      /** Index-page lead paragraph, longer and more specific than `description`. */
       lead: {
         es: "El estudio cubre las veinte áreas siguientes con la misma capacidad: asesoramiento consultivo y, cuando el asunto lo exige, representación activa ante la vía judicial, arbitral o administrativa. Cada área recibe la misma exigencia técnica, sin distinción entre las materias de mayor perfil público y las de menor visibilidad.",
         en: "The firm covers the twenty areas below with the same capability throughout: advisory work and, when a matter requires it, active representation before the courts, an arbitral tribunal or an administrative authority. Every area receives the same technical rigour, with no distinction between higher-profile matters and those with a lower public profile.",
@@ -229,7 +229,7 @@ export const ui = {
       eyebrow: { es: "Recursos", en: "Resources" },
       lead: {
         es: "Análisis del estudio sobre asuntos jurídicos bolivianos de interés general para clientes y potenciales clientes: desde la constitución de una empresa hasta la sucesión patrimonial de una familia.",
-        en: "Analysis from the firm on Bolivian legal matters of general interest to clients and prospective clients — from setting up a company to the succession of a family's assets.",
+        en: "Analysis from the firm on Bolivian legal matters of general interest to clients and prospective clients, from setting up a company to the succession of a family's assets.",
       },
     },
     contact: {
@@ -252,7 +252,7 @@ export const ui = {
     },
   },
 
-  /** Body copy for /legal-notice. Placeholder — do not invent legal terms. */
+  /** Body copy for /legal-notice. Placeholder, do not invent legal terms. */
   legalNotice: {
     pending: {
       es: "Aviso legal pendiente de redacción por el estudio.",

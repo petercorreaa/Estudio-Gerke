@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { getDictionary } from "@/content";
-// Server-only — see the note in src/content/index.ts.
+// Server-only, see the note in src/content/index.ts.
 import { getPublishedArticles } from "@/content/publications-loader";
 import { Section, SectionTitle, Prose } from "@/components/ui";
 import { PublicationsBrowser } from "@/components/publications/PublicationsBrowser";
@@ -42,8 +42,8 @@ export default async function PublicationsPage({
     areaName: practiceAreas.find((a) => a.id === article.practiceAreaIds[0])?.name,
   }));
 
-  // Only areas actually in use — an empty filter that always returns nothing
-  // is worse than no filter at all — kept in the frozen 01-20 order.
+  // Only areas actually in use, an empty filter that always returns nothing
+  // is worse than no filter at all, kept in the frozen 01-20 order.
   const usedAreaIds = new Set(articles.flatMap((a) => a.practiceAreaIds));
   const areas = practiceAreas
     .filter((area) => usedAreaIds.has(area.id))

@@ -19,8 +19,8 @@ export async function generateMetadata({
   };
 }
 
-/** Half-width of the OpenStreetMap embed's bounding box, in degrees. */
-const MAP_BBOX_DELTA = 0.006;
+/** Zoom level for the Google Maps embed: close enough to read the street grid. */
+const MAP_ZOOM = 16;
 
 export default async function ContactPage({
   params,
@@ -40,11 +40,21 @@ export default async function ContactPage({
     : "";
 
   const { lat, lng } = site.mapCoordinates;
-  const osmEmbedUrl =
-    `https://www.openstreetmap.org/export/embed.html?bbox=` +
-    `${lng - MAP_BBOX_DELTA}%2C${lat - MAP_BBOX_DELTA}%2C${lng + MAP_BBOX_DELTA}%2C${lat + MAP_BBOX_DELTA}` +
-    `&layer=mapnik&marker=${lat}%2C${lng}`;
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
+  const mapQuery = encodeURIComponent(site.address);
+  /*
+   * Google Maps, two ways. With GOOGLE_MAPS_API_KEY set (Vercel project env,
+   * read at build time because these pages prerender) the embed goes through
+   * the Maps Embed API, which is the supported product and lets the key be
+   * locked to the site's own referrer. Without a key it falls back to Google's
+   * keyless embed endpoint, so the map still renders rather than showing an
+   * error tile. Either way the tiles are Google's, not OpenStreetMap's.
+   */
+  const mapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
+  const mapEmbedUrl = mapsApiKey
+    ? `https://www.google.com/maps/embed/v1/place?key=${mapsApiKey}&q=${mapQuery}` +
+      `&center=${lat},${lng}&zoom=${MAP_ZOOM}&language=${locale}`
+    : `https://maps.google.com/maps?q=${lat},${lng}&z=${MAP_ZOOM}&hl=${locale}&output=embed`;
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -124,7 +134,7 @@ export default async function ContactPage({
 
               <div>
                 <Eyebrow as="h2">{ui.contact.hoursLabel}</Eyebrow>
-                {/* TODO: client to confirm exact opening/closing times — do not invent them. */}
+                {/* TODO: client to confirm exact opening/closing times, do not invent them. */}
                 <p className="mt-2 text-base leading-relaxed text-ink">{ui.contact.hoursDays}</p>
               </div>
             </address>
@@ -132,9 +142,10 @@ export default async function ContactPage({
             <div className="mt-8">
               <BracketFrame openSide="right" tone="muted" className="overflow-hidden p-0">
                 <iframe
-                  src={osmEmbedUrl}
+                  src={mapEmbedUrl}
                   title={ui.contact.mapFrameTitle}
                   loading="lazy"
+                  allowFullScreen
                   referrerPolicy="no-referrer-when-downgrade"
                   // The map is a supplementary visual aid; the "Ver en Google
                   // Maps" link below is the actual, fully keyboard-reachable

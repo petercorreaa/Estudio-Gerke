@@ -7,14 +7,14 @@ import { publicationTranslations } from "./publications-translations";
 import type { Locale } from "./types";
 
 /**
- * The MDX content pipeline — server-only (reads the filesystem via `fs`).
+ * The MDX content pipeline, server-only (reads the filesystem via `fs`).
  * Never import this from a "use client" file; see `publications-translations.ts`
  * for the client-safe alternative used by the language switcher.
  *
  * Every file under src/content/publications/{es,en}/*.mdx is parsed and its
  * frontmatter strictly validated when this module first loads. A malformed
- * file — a missing field, a bad date, an unknown practice area id, a
- * translationKey that disagrees with publications-translations.ts — throws,
+ * file, a missing field, a bad date, an unknown practice area id, a
+ * translationKey that disagrees with publications-translations.ts, throws,
  * which fails `next build` rather than shipping bad content.
  */
 
@@ -95,7 +95,7 @@ function validateFrontmatter(data: Record<string, unknown>, filePath: string): A
   if (!VALID_AUTHORS.has(author)) {
     fail(
       filePath,
-      `unknown "author" "${author}" — must be a lawyer slug from lawyers.ts or "Estudio Jurídico Gerke"`,
+      `unknown "author" "${author}": must be a lawyer slug from lawyers.ts or "Estudio Jurídico Gerke"`,
     );
   }
 
@@ -204,7 +204,7 @@ function allArticles(): Article[] {
 
 /**
  * `next build` runs with NODE_ENV=production for the whole build, so this
- * also governs generateStaticParams — draft articles get neither a static
+ * also governs generateStaticParams, draft articles get neither a static
  * page nor an on-demand fallback in production. In development, drafts are
  * visible so they can be reviewed before publication.
  */

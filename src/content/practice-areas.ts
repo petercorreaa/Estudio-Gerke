@@ -3,14 +3,14 @@ import type { Localized } from "./types";
 /**
  * The 20 practice areas.
  *
- * FROZEN — CLAUDE.md rule 3. Exact names, exact order, no regrouping, no
+ * FROZEN, CLAUDE.md rule 3. Exact names, exact order, no regrouping, no
  * renaming, no additions. The client explicitly asked to keep them as-is.
  * `index` is the printed ornament (01–20) and must match array position.
  */
 
 export interface PracticeArea {
   readonly id: string;
-  /** Printed index, zero-padded. Ornamental — see DESIGN.md §2. */
+  /** Printed index, zero-padded. Ornamental, see DESIGN.md §2. */
   readonly index: string;
   readonly name: Localized;
   /** Localized URL segment for the detail route. */
@@ -255,7 +255,7 @@ export const practiceAreas = [
   },
 ] as const satisfies readonly PracticeArea[];
 
-/** Union of the 20 frozen ids — lets other content files reference them safely. */
+/** Union of the 20 frozen ids, lets other content files reference them safely. */
 export type PracticeAreaId = (typeof practiceAreas)[number]["id"];
 
 /**
