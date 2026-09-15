@@ -102,18 +102,29 @@ export function Header({ locale }: { locale: Locale }) {
           aria-label={ui.aria.homeLink}
           className="shrink-0 rounded-bracket"
         >
-          {/* Ratio-locked height only, never stretched, never recolored.
-              width/height attrs (matching the SVG's intrinsic ratio) let the
-              browser reserve the box before the file loads, so nothing
-              shifts once it does. Source swaps with scroll state, same as
-              the footer's own fixed choice of the white mark on brand-900. */}
+          {/* Ratio-locked height only, never stretched. One file, the teal
+              "Gerke" wordmark, recolored to white on scroll via filter
+              rather than swapping to a second asset: brightness-0 flattens
+              every opaque pixel to black (alpha untouched), invert flips
+              that to white, matching the footer's own fixed choice of white
+              on brand-900. width/height attrs (the file's intrinsic ratio)
+              let the browser reserve the box before it loads, so nothing
+              shifts once it does. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={scrolled ? "/logo-white.png" : "/logo-color.png"}
+            src="/logo-solo.png"
             alt=""
-            width={1195}
-            height={1114}
-            className="h-10 w-auto lg:h-13"
+            width={1266}
+            height={413}
+            className={cn(
+              // `block`, not the browser's default inline: an inline image
+              // sits on the text baseline, which leaves descender space
+              // underneath it and lifts the mark off the row's optical
+              // centre. This is the same alignment fix as the nav labels
+              // below, for the same reason.
+              "block h-6 w-auto transition-[filter] duration-200 ease-out lg:h-5 xl:h-7",
+              scrolled && "brightness-0 invert",
+            )}
           />
         </Link>
 
@@ -124,7 +135,7 @@ export function Header({ locale }: { locale: Locale }) {
                 key={item.href}
                 href={{ pathname: item.href }}
                 aria-current={item.active ? "page" : undefined}
-                className="group inline-flex flex-col items-start gap-1.5"
+                className="group relative inline-flex items-center"
               >
                 <span
                   className={cn(
@@ -143,11 +154,16 @@ export function Header({ locale }: { locale: Locale }) {
                   {item.label}
                 </span>
                 {/* The bracket motif at its smallest: a rule that grows in on
-                    hover and stays open on the active page. */}
+                    hover and stays open on the active page. Absolutely
+                    positioned, not a second row in a flex column: in the
+                    column the rule and its gap counted toward the link's
+                    height, so centring the link in the bar left the label
+                    itself sitting ~4px high. Out of flow, the label is what
+                    gets centred, and the rule still tracks its width. */}
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "h-0.5 w-full origin-left transition-transform duration-200 ease-out",
+                    "absolute inset-x-0 -bottom-1.5 h-0.5 origin-left transition-transform duration-200 ease-out",
                     scrolled ? "bg-paper" : "bg-brand-700",
                     item.active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                   )}

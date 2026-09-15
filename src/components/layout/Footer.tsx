@@ -19,9 +19,17 @@ export function Footer({ locale }: { locale: Locale }) {
         {/* Identity */}
         <div>
           {/* Adjacent text already carries the firm name, decorative image.
-              Explicit width/height prevent layout shift while it loads. */}
+              Same file and brightness-0/invert recolor as the header's
+              scrolled state, since the band here is brand-900 too. Explicit
+              width/height prevent layout shift while it loads. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-white.png" alt="" width={1195} height={1114} className="h-10 w-auto" />
+          <img
+            src="/logo-solo.png"
+            alt=""
+            width={1266}
+            height={413}
+            className="h-8 w-auto brightness-0 invert"
+          />
           <p className="mt-5 max-w-[26ch] text-sm leading-relaxed text-paper/90">
             {site.name}
           </p>

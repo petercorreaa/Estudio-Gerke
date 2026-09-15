@@ -138,14 +138,16 @@ Implemented as `<BracketFrame>`:
 bracket inside a bracket, and never use it as a border on every card in a
 grid. It marks the one thing that matters in a view.
 
-One sanctioned exception: the lawyer card grid (`/lawyers`), where every card
-is a `BracketFrame` holding a portrait. Each frame there marks a distinct
-*person*, so the bracket functions as an identity mark, not as generic card
-decoration. That is a different job from decorating every tile in a features
-grid, which is what the rule above forbids. Default state is `tone="muted"`
-(`neutral-500`, quiet, at rest); `border-brand-700` on hover is a one-off
-override rather than a new `tone` value, since `brand-700` is not one of
-`BracketFrame`'s three tones.
+One sanctioned exception: the lawyer cards (`/lawyers`), where every card is a
+`BracketFrame`, whether it holds a portrait (the four partners) or only a name
+(everyone else). Each frame there marks a distinct *person*, so the bracket
+functions as an identity mark, not as generic card decoration. That is a
+different job from decorating every tile in a features grid, which is what the
+rule above forbids. Default state is `tone="muted"` (`neutral-500`, quiet, at
+rest); `border-brand-700` on hover is a one-off override rather than a new
+`tone` value, since `brand-700` is not one of `BracketFrame`'s three tones.
+The unnamed placeholder cards at the end of the team list take the same frame
+without the hover, since they are not links.
 
 The same motif frames the portrait on each lawyer's profile, where a second
 bracket sits offset behind the photograph: the logo's rounded square holding
@@ -233,6 +235,14 @@ markup.
 the mobile panel can close itself on tap. Its inactive-locale color is
 `brand-ink`, not the `neutral-500` a raw color spec might suggest, see the
 color table in §1; `neutral-500` fails AA for text at any size.
+
+The `Header` and `Footer` logo is `public/logo-solo.png`, the bare "Gerke"
+wordmark (no bracket frame), at its native 1266x413. One file for every
+background: it ships teal, and both components apply
+`brightness-0 invert` to flatten it to white wherever it sits on a dark
+band (the header past `8px` of scroll, the footer always), rather than
+swapping to a second asset. That recolor only works because the source is
+flat, single-color art on a transparent ground.
 
 ### Publications (MDX)
 

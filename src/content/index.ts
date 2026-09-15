@@ -23,6 +23,7 @@ export {
   lawyerProfileLabels,
   LAWYER_PHOTO_WIDTH,
   LAWYER_PHOTO_HEIGHT,
+  PENDING_MEMBER_COUNT,
   type Lawyer,
   type LawyerSlug,
 } from "./lawyers";

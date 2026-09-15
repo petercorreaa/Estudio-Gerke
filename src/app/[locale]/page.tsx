@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { getDictionary, format, getPracticeAreaById } from "@/content";
+import { getDictionary, format, getPracticeAreaById, PENDING_MEMBER_COUNT } from "@/content";
 // Server-only (reads the filesystem), imported directly, not through the
 // @/content barrel, which client components also pull from. See the note in
 // src/content/index.ts.
@@ -62,7 +62,9 @@ export default async function HomePage({
 
   const statValues: Record<(typeof home.firmBrief.stats)[number]["id"], string> = {
     founded: String(site.founded),
-    lawyers: String(lawyers.length),
+    // Counts the unnamed members too: they are on /lawyers as placeholder
+    // cards, so a smaller number here would contradict the page.
+    lawyers: String(lawyers.length + PENDING_MEMBER_COUNT),
     practiceAreas: String(practiceAreas.length),
   };
 

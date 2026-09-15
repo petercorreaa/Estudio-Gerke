@@ -5,11 +5,13 @@ corporations investing in Bolivia and Bolivian business families. The site must
 feel INSTITUTIONAL, SOBER, PREMIUM. One word: Professional.
 
 Hard rules, never violate:
-1. The only photographs on the site are the lawyers' own portraits, supplied by
-   the firm and shown on `/lawyers` and each profile. Nothing else: no stock
-   imagery of law books, gavels, scales, courthouses, or handshakes. Ever.
-   (The client originally rejected all photography and later reversed that for
-   the portraits only. The rest of the rule stands unchanged.)
+1. The only photographs on the site are the four partners' own portraits,
+   supplied by the firm, on `/lawyers` and their profiles. The rest of the team
+   is listed by name, deliberately: the firm wants the partners to lead the
+   page. Nothing else: no stock imagery of law books, gavels, scales,
+   courthouses, or handshakes. Ever. (The client originally rejected all
+   photography, then reversed that for the portraits, then narrowed it to the
+   partners. The rest of the rule has never moved.)
 2. No carousels, no autoplaying video, no parallax, no counters, no marquees.
    Motion is limited to opacity/translateY fades under 400ms.
 3. The 20 practice areas are FROZEN, exact names, exact order, no regrouping,
@@ -51,8 +53,12 @@ any styling.
   area) hold the practice-area content; `lawyers.ts` holds the roster,
   transcribed verbatim from the firm's own site (role, practice-area line,
   biography, languages, direct email, portrait), never paraphrased or
-  rewritten to taste; `home.ts` and `firm-profile.ts` hold page-specific prose;
-  `site.ts` holds contact details identical in both languages.
+  rewritten to taste, with `isPartner` driving the split between the portrait
+  row and the name-only list and `PENDING_MEMBER_COUNT` standing in for
+  lawyers the firm has taken on but not yet named; `home.ts` and
+  `firm-profile.ts` hold page-specific prose; `site.ts` holds contact details
+  identical in both languages. When someone leaves the firm, remove the entry
+  and the portrait file outright rather than commenting either out.
 - **Unconfirmed data:** never invent a credential, a date, an email address, or
   a statute/article citation you're not confident of. Missing values carry the
   `TODO` marker from `src/content/types.ts`, as a code comment flagging what

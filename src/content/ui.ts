@@ -219,6 +219,11 @@ export const ui = {
         es: "Un equipo unido por los mismos estándares profesionales y los mismos valores, con independencia del tamaño del asunto que cada abogado tenga a su cargo.",
         en: "A team bound by the same professional standards and the same values, regardless of the size of the matter any one lawyer is handling.",
       },
+      /** The two groups on the index: the four partners, then everyone else. */
+      partnersHeading: { es: "Socios", en: "Partners" },
+      teamHeading: { es: "Equipo", en: "Team" },
+      /** Stands in for a lawyer the firm has taken on but not yet named. */
+      pendingMember: { es: "Nombre por confirmar", en: "Name to be confirmed" },
     },
     publications: {
       title: { es: "Publicaciones", en: "Publications" },

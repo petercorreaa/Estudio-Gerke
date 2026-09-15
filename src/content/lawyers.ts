@@ -15,10 +15,16 @@ import type { Localized } from "./types";
  *
  * NOTE ON PHOTOGRAPHS: CLAUDE.md rule 1 forbade photographs of people. The
  * client reversed that decision and asked for the portraits from the current
- * site, so each entry carries one. Rule 1 still holds for everything else:
- * no stock imagery of books, gavels, scales, courthouses or handshakes.
- * The portraits live in `public/lawyers/`, named by slug, cropped from the
- * firm's originals.
+ * site. Only the four partners carry one now, by the firm's own instruction,
+ * so that they lead the page; everyone else is listed by name. Rule 1 still
+ * holds for everything else: no stock imagery of books, gavels, scales,
+ * courthouses or handshakes. The portraits live in `public/lawyers/`, named
+ * by slug, cropped from the firm's originals.
+ *
+ * Fabián Arce Bellido, Diana María Rodríguez Agüero and Christian Branisa
+ * Caballero have left the firm and were removed outright, profiles and
+ * portraits both. Do not restore them from git history without the firm
+ * asking for it.
  */
 
 export interface Lawyer {
@@ -28,8 +34,14 @@ export interface Lawyer {
   readonly role: Localized;
   /** The lawyer's direct address, exactly as published by the firm. */
   readonly email: string;
-  /** Portrait in `public/`, 422x459. */
-  readonly photo: string;
+  /**
+   * Portrait in `public/`, 422x459, or null. Only the partners carry one:
+   * the firm wants the four of them to lead the page, with the rest of the
+   * team listed by name.
+   */
+  readonly photo: string | null;
+  /** Drives both the portrait row and the name-only list on /lawyers. */
+  readonly isPartner: boolean;
   /** The firm's own "Áreas de Práctica" line, verbatim. Free prose, not the frozen twenty. */
   readonly practiceAreasText: Localized;
   readonly bio: Localized;
@@ -46,6 +58,7 @@ export const lawyers = [
     name: "Carlos Gerke Mendieta",
     role: { es: "Socio Fundador", en: "Founding Partner" },
     email: "cgerkem@lawfirm-gerke.com",
+    isPartner: true,
     photo: "/lawyers/carlos-gerke-mendieta.jpg",
     practiceAreasText: {
       es: "Derecho civil, derecho comercial, derecho administrativo, sucesiones, derecho de familia, inversiones, negocios internacionales, derecho minero, contratos, asesoría legal en sectores regulados de electricidad, gas y petróleo, telecomunicaciones, bancos y otras entidades financieras, mercados de valores, y transporte, fusiones y adquisiciones, arbitraje comercial internacional, estructuración y financiamiento de proyectos, asesoramiento legal relativo al gobierno de empresas familiares y abiertas, derecho tributario, asesoría fiscal y tributación, litigación civil, comercial, administrativa, tributaria, familiar, laboral y constitucional, conciliación y arbitraje.",
@@ -62,6 +75,7 @@ export const lawyers = [
     name: "Marcela Gerke Siles",
     role: { es: "Socia Fundadora", en: "Founding Partner" },
     email: "mgerke@lawfirm-gerke.com",
+    isPartner: true,
     photo: "/lawyers/marcela-gerke-siles.jpg",
     practiceAreasText: {
       es: "Derecho civil, derecho comercial, derecho administrativo, sucesiones, inversiones, negocios internacionales, asesoría legal en sectores regulados de bancos, otras entidades financieras y mercados de valores, derecho de familia, derecho laboral y de seguridad social, contratos y derecho registral, derecho minero, asesoramiento relativo al gobierno de empresas familiares y abiertas, litigación civil, comercial, administrativa, tributaria, familiar, laboral y propiedad intelectual.",
@@ -78,6 +92,7 @@ export const lawyers = [
     name: "Carlos Gerke Siles",
     role: { es: "Socio Fundador", en: "Founding Partner" },
     email: "cgerkes@lawfirm-gerke.com",
+    isPartner: true,
     photo: "/lawyers/carlos-gerke-siles.jpg",
     practiceAreasText: {
       es: "Derecho civil, derecho comercial, derecho administrativo, derecho constitucional, inversiones, negocios internacionales, derecho minero, asesoría legal en los sectores regulados de electricidad, gas y petróleo, telecomunicaciones, bancos y otras entidades financieras, fusiones y adquisiciones, arbitraje comercial internacional, estructuración y financiamiento de proyectos, asesoramiento legal relativo al gobierno de empresas familiares y abiertas, litigación civil, comercial, administrativa, tributaria y constitucional.",
@@ -94,6 +109,7 @@ export const lawyers = [
     name: "David Terrazas Ruiz",
     role: { es: "Socio", en: "Partner" },
     email: "dterrazas@lawfirm-gerke.com",
+    isPartner: true,
     photo: "/lawyers/david-terrazas-ruiz.jpg",
     practiceAreasText: {
       es: "Derecho civil, derecho de familia, sucesiones, derecho laboral y de seguridad social, contratos y derecho registral, conciliación y arbitraje, litigación civil, comercial, administrativa, tributaria, familiar, laboral y constitucional.",
@@ -115,7 +131,8 @@ export const lawyers = [
     name: "Andrés Ostertag Antezana",
     role: { es: "Asociado", en: "Associate Attorney" },
     email: "ostertag@lawfirm-gerke.com",
-    photo: "/lawyers/andres-ostertag-antezana.jpg",
+    isPartner: false,
+    photo: null,
     practiceAreasText: {
       es: "Derecho tributario, asesoría fiscal y tributación, derecho comercial, asesoría legal para promociones empresariales en el sector regulado por la Autoridad de Juegos, estructuración de proyectos, asesoramiento relativo al gobierno de empresas familiares y abiertas, litigación administrativa y tributaria.",
       en: "Tax law, fiscal and tax advisory, commercial law, legal advisory for business promotions in the sector regulated by the Gaming Authority; project structuring; advisory on the governance of family and public companies; administrative and tax litigation.",
@@ -134,7 +151,8 @@ export const lawyers = [
     name: "Claudia Sánchez Hurtado",
     role: { es: "Abogada", en: "Associate" },
     email: "csanchez@lawfirm-gerke.com",
-    photo: "/lawyers/claudia-sanchez-hurtado.jpg",
+    isPartner: false,
+    photo: null,
     practiceAreasText: {
       es: "Propiedad intelectual, derecho civil, derecho de familia, derecho laboral, derechos humanos, derecho comercial, sucesiones, arbitraje, asesoría legal empresarial, contratos, derecho registral, litigación civil, comercial, administrativa, familiar, laboral y de propiedad intelectual.",
       en: "Intellectual property law, civil law, family law, labor law, human rights, commercial law, inheritance law, arbitration, corporate legal advisory, contracts, registry law, civil, commercial, administrative, family, labor, and intellectual property litigation.",
@@ -145,58 +163,15 @@ export const lawyers = [
     },
     languages: { es: "Español, inglés y alemán.", en: "Spanish, English, German" },
   },
-  {
-    slug: "fabian-arce-bellido",
-    name: "Fabián Andrés Arce Bellido",
-    role: { es: "Abogado", en: "Attorney" },
-    email: "farce@lawfirm-gerke.com",
-    photo: "/lawyers/fabian-arce-bellido.jpg",
-    practiceAreasText: {
-      es: "Derecho civil, obligaciones, contratos, sucesiones, litigación civil, comercial, conciliación y arbitraje y constitucional.",
-      en: "Civil law, obligations, contracts, inheritance law, civil litigation, commercial litigation, conciliation and arbitration, and constitutional law.",
-    },
-    bio: {
-      es: "Fabián Arce Bellido inició su práctica jurídica en el Estudio Gerke el año 2019. Su práctica está principalmente relacionada con el asesoramiento permanente en procesos judiciales, derecho civil, derecho de familia, derecho laboral y de seguridad social y derecho constitucional. Adicionalmente, tiene una sólida práctica en obligaciones y apoya al equipo de abogados del Estudio Gerke en diversos casos en materia de contratos, derecho registral y litigación. Arce obtuvo una maestría en Derecho Tributario y Derecho Procesal Tributario en la Universidad Andina Simón Bolívar de La Paz - Bolivia en el año 2018, y en 2019 realizó distintos cursos de prácticas jurídicas para optimizar la litigación oral. Obtuvo su título de abogado de la Universidad Católica Boliviana San Pablo en el año 2016, y está inscrito en el Registro Público de Abogados del Ministerio de Justicia de Bolivia desde el año 2017. Previo a su ingreso al Estudio Jurídico Gerke, Arce realizó prácticas como asistente legal desde el 2016 en una firma de abogados, para luego desempeñarse como abogado en el mismo Estudio, hasta el año 2019.",
-      en: 'Fabián Arce Bellido began his legal practice at the Gerke Law Firm in 2019. His practice is primarily related to ongoing advisory in judicial processes, civil law, family law, labor and social security law, and constitutional law. Additionally, he has a solid practice in obligations and he supports the Gerke Law Firm team in various cases related to contracts, registry law, and litigation. Arce obtained a Master\'s degree in Tax Law and Tax Procedural Law from the Universidad Andina Simón Bolívar in La Paz, Bolivia, in 2018. In 2019, he took various courses in legal practice to optimize oral litigation. He earned his law degree from the Bolivian Catholic University "San Pablo" in 2016 and has been registered with the Public Registry of Lawyers of the Ministry of Justice of Bolivia since 2017.',
-    },
-    languages: { es: "Español e Inglés", en: "Spanish and English" },
-  },
-  {
-    slug: "diana-rodriguez-aguero",
-    name: "Diana María Rodríguez Agüero",
-    role: { es: "Abogada", en: "Attorney" },
-    email: "drodriguez@lawfirm-gerke.com",
-    photo: "/lawyers/diana-rodriguez-aguero.jpg",
-    practiceAreasText: {
-      es: "Derecho civil, comercial, familiar y propiedad intelectual.",
-      en: "Civil law, commercial law, family law, and intellectual property law.",
-    },
-    bio: {
-      es: 'Diana María Rodríguez Agüero inició su práctica jurídica en el Estudio Gerke el año 2020, apoyando al equipo de abogados en diversos casos en materia de derecho civil, familiar, comercial, contratos y propiedad intelectual. Rodríguez obtuvo la licenciatura en Derecho de la Universidad Católica Boliviana "San Pablo" el año 2019 y está inscrita en el Registro Público de Abogados del Ministerio de Justicia de Bolivia desde el año 2020. Previo a su ingreso al Estudio Jurídico Gerke, Rodríguez realizó prácticas en el área de derecho comercial en el Banco FIE, en derecho penal en una firma de abogados y en derecho administrativo y civil en el Banco de Crédito de Bolivia.',
-      en: 'Diana María Rodríguez Agüero began her legal practice at the Gerke Law Firm in 2020, supporting the team in various cases related to civil law, family law, commercial law, contracts, and intellectual property law. Rodríguez obtained her law degree from the Bolivian Catholic University "San Pablo" in 2019 and has been registered with the Public Registry of Lawyers of the Ministry of Justice of Bolivia since 2020. Before joining the Gerke Law Firm, Rodríguez interned in the commercial law department at "Banco FIE", in criminal law at a private law firm, and in administrative and civil law at "Banco de Crédito de Bolivia".',
-    },
-    languages: { es: "Español e Inglés", en: "English and Spanish" },
-  },
-  {
-    slug: "christian-branisa-caballero",
-    name: "Christian Eduardo Branisa Caballero",
-    role: { es: "Abogado", en: "Associate" },
-    email: "cbranisa@lawfirm-gerke.com",
-    photo: "/lawyers/christian-branisa-caballero.jpg",
-    practiceAreasText: {
-      es: "Derecho Internacional, Conciliación y Arbitraje, Arbitraje Comercial Internacional, Arbitraje Internacional de Inversiones, Propiedad Intelectual, Derecho Comercial, Derecho Civil.",
-      en: "International law, conciliation and arbitration, international commercial arbitration, international investment arbitration, intellectual property, commercial law, civil law.",
-    },
-    bio: {
-      es: 'Christian Branisa Caballero se asoció al Estudio Gerke desde el año 2022. Su práctica está principalmente relacionada con el asesoramiento jurídico estratégico y planificación en Derecho Internacional, Arbitraje, Inversiones, Derecho Comercial y Derecho Civil. Branisa obtuvo una maestría en Derecho Comparado Magister iuris (M.iur.) de la Jurisdicción de la Unión Europea, el Mercosur y la Comunidad Andina de Naciones en la Georg August Universität Göttingen, Baja Sajonia - Alemania en el año 2007. El año 2015 participó en el VII Programa de Prácticas Profesionales en el Servicio Jurídico de la sede de la Secretaría General de la Comunidad Andina en la ciudad de Lima, Perú. En el 2021 asistió a los cursos de verano de la Academia de Derecho Internacional de La Haya, Países Bajos. Branisa obtuvo su licenciatura en Derecho en la Universidad Católica Boliviana "San Pablo" el año 2004, y está inscrito en el Registro Público de Abogados del Ministerio de Justicia de Bolivia desde el año 2009. Previo a asociarse al Estudio Jurídico Gerke, además de ejercer como abogado independiente, trabajó en la Procuraduría General del Estado; entre 2019 y 2020 como Jefe de Unidad, y entre 2017 y 2019 como Especialista, dependiente de la Dirección General de Defensa de la Subprocuraduría de Defensa y Representación Legal del Estado en la ciudad de El Alto.',
-      en: 'Christian Branisa Caballero joined the Gerke Law Firm in 2022. His practice primarily focuses on strategic legal advisory and planning in international law, arbitration, investments, commercial law, and civil law. Branisa obtained a Master of Comparative Law, Magister Iuris (M.iur.), on the Jurisdiction of the European Union, Mercosur, and the Andean Community of Nations at the Georg August University Göttingen, Lower Saxony, Germany, in the year 2007. In 2015, he participated in the VII Professional Internship Program at the Legal Service of the Secretariat General of the Andean Community in Lima, Peru. In 2021, he attended summer courses at The Hague Academy of International Law, the Netherlands. Mr. Branisa earned his law degree from the Bolivian Catholic University "San Pablo" in 2004 and has been registered with the Public Registry of Lawyers of the Ministry of Justice of Bolivia since 2009. Before joining the Gerke Law Firm, in addition to practicing as an independent lawyer, Branisa worked at the State Attorney General\'s Office; from 2019 to 2020 as a Unit Chief, and from 2017 to 2019 as a Specialist, under the General Directorate of Defense of the Sub-Attorney General\'s Office of Defense and Legal Representation of the State in El Alto.',
-    },
-    languages: {
-      es: "Español, inglés, alemán e italiano básico",
-      en: "Spanish, English, German, and basic Italian",
-    },
-  },
 ] as const satisfies readonly Lawyer[];
+
+/**
+ * Two lawyers the firm has taken on but has not named to us yet. They hold
+ * their place at the end of the team list as unnamed cards rather than being
+ * left off it. When a name arrives, add a full entry above and drop this by
+ * one; at zero the placeholder cards stop rendering on their own.
+ */
+export const PENDING_MEMBER_COUNT = 2;
 
 export type LawyerSlug = (typeof lawyers)[number]["slug"];
 

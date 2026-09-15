@@ -9,9 +9,10 @@ import {
   LAWYER_PHOTO_WIDTH,
   LAWYER_PHOTO_HEIGHT,
 } from "@/content";
-import { Section, Eyebrow, Button, Prose } from "@/components/ui";
+import { Section, Eyebrow, Button, Prose, BracketFrame } from "@/components/ui";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/cn";
 import type { Locale } from "@/i18n/routing";
 
 type Params = { locale: Locale; slug: string };
@@ -67,23 +68,32 @@ export default async function LawyerPage({
                 photograph so the frame reads as the logo's rounded square
                 holding the person the way it holds the wordmark.
               */}
-              <div className="relative w-full max-w-[19rem]">
-                <div
-                  aria-hidden="true"
-                  className="absolute -bottom-3 -left-3 h-full w-full rounded-bracket rounded-r-none border-y-2 border-l-2 border-r-0 border-brand-600"
-                />
-                <Image
-                  src={lawyer.photo}
-                  alt={lawyer.name}
-                  width={LAWYER_PHOTO_WIDTH}
-                  height={LAWYER_PHOTO_HEIGHT}
-                  sizes="(min-width: 1024px) 19rem, (min-width: 640px) 19rem, 60vw"
-                  priority
-                  className="relative h-auto w-full rounded-bracket object-cover"
-                />
-              </div>
+              {lawyer.photo ? (
+                <div className="relative w-full max-w-[19rem]">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -bottom-3 -left-3 h-full w-full rounded-bracket rounded-r-none border-y-2 border-l-2 border-r-0 border-brand-600"
+                  />
+                  <Image
+                    src={lawyer.photo}
+                    alt={lawyer.name}
+                    width={LAWYER_PHOTO_WIDTH}
+                    height={LAWYER_PHOTO_HEIGHT}
+                    sizes="(min-width: 1024px) 19rem, (min-width: 640px) 19rem, 60vw"
+                    priority
+                    className="relative h-auto w-full rounded-bracket object-cover"
+                  />
+                </div>
+              ) : (
+                /* Only the partners carry a portrait. Without one, the bracket
+                   marker takes the photo's place so the column still opens on
+                   the motif rather than starting cold on the name. */
+                <BracketFrame variant="marker" openSide="right" />
+              )}
 
-              <h1 className="u-display u-h2 mt-8 break-words">{lawyer.name}</h1>
+              <h1 className={cn("u-display u-h2 break-words", lawyer.photo ? "mt-8" : "mt-6")}>
+                {lawyer.name}
+              </h1>
               <p className="mt-2 text-brand-ink">{lawyer.role}</p>
 
               <div className="mt-5">
